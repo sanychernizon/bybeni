@@ -41,8 +41,7 @@ footer {
 .container-menu {
     background-color: #333333;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: -280px;
@@ -64,6 +63,11 @@ footer {
     width: 100%;
     background: #f4f4f4;
     border-bottom: #cccccc 1px solid;
+}
+
+.user-menu {
+    height: 52px;
+    background: #333333;
 }
 
 .btn-menu {

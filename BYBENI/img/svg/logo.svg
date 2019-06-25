@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="236" height="77" viewBox="0 0 236 77">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 72px;
+        fill: #181818;
+        font-family: "Heading Pro Trial";
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .cls-2 {
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text id="BYBENI" class="cls-1" transform="translate(-7 77.649) scale(1.473)">BY<tspan class="cls-2">BENI</tspan></text>
+</svg>

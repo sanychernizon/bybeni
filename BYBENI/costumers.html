@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BYBENI</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+</head>
+<body>
+
+    <!-- MENU -->
+
+    <nav class="navbar">
+        <div class="navbar-box">
+            <a href="admin.html"><img src="./img/llogo-admin-349-77.png" /></a>
+            <ul class="main-menu">
+                <a href="orders.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="arcs"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/></svg>
+                        <div class="menu-item">Orders</div>
+                    </li>
+                </a>
+                <a href="costumers.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="arcs"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <div class="menu-item">Costumers</div>
+                    </li>
+                </a>
+                <a href="catalog.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="arcs"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <div class="menu-item">Catalog</div>
+                    </li>
+                </a>
+                <a href="marketing.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="arcs"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <div class="menu-item">Marketing</div>
+                    </li>
+                </a>
+                <a href="report.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="arcs"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                        <div class="menu-item">Report</div>
+                    </li>
+                </a>
+            </ul>
+            <ul class="center side-menu">
+                <li class="center menu-user">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
+                </li>
+                <li class="center menu-logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M16 17l5-5-5-5M19.8 12H9M10 3H4v18h6"/></svg>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- # MENU -->
+
+    <main class="container is-fluid">
+        <div class="center-column">
+            <h1 class="title is-4">Costumers</h1>
+            <div class="search-bar center">
+                <input class="input" type="text" placeholder="Search costumer">
+                <div class="select">
+                    <select>
+                        <option>ID</option>
+                        <option>Nome</option>
+                        <option>E-mail</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table is-hoverable">
+                <thead>
+                    <tr>
+                        <th><abbr title="ID">#</abbr></th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Pedidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>4</th>
+                        <td>Sany Chernizon</td>
+                        <td>sanychernizon@gmail.com</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>João Carvalho</td>
+                        <td>jocarva@outlook.com</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Frederico Conti</td>
+                        <td>fredericonti@gmail.com</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td>Amanda Martins dos Santos</td>
+                        <td>amandinha99@gmail.com</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

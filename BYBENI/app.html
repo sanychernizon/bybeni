@@ -12,9 +12,16 @@
 <body>
 
     <header>
-        <nav class="container-menu" id="menu-m">
+        <nav class="menu-container" id="menu-m">
             <div class="user-menu">
-                
+                <div class="user-menu-box">
+                    <div class="user-thumbnail">
+                        <img src="img/svg/user.svg" />
+                    </div>
+                    <div class="user-login">
+                        <p>Logar ou criar minha conta.</p>
+                    </div>
+                </div>
             </div>
             <ul>
                 <li>
@@ -73,6 +80,66 @@
                 </li>
             </ul>
         </nav>
+        <div class="cart-container">
+            <div class="cart">
+                <div class="cart-header">
+                    <div class="close-cart" onclick="closeCart()"><img src="img/svg/close-x.svg" /></div>
+                    <div class="cart-title">Sacola (x)</div>
+                    <div class="cart-help"><img src="img/svg/help-cart.svg" /></div>
+                </div>
+                <div class="cart-body">
+                    <div class="cart-product">
+                        <div class="cart-product-img">
+                            <img src="img/products/camisa-polo.jpg" />
+                        </div>
+                        <div class="cart-product-info">
+                            <div class="cart-product-name">Camisa Polo Seda</div>
+                            <div class="cart-product-attributes">
+                                <div class="cart-product-size">Tam. P</div>
+                                <div class="cart-product-color">Branca</div>
+                            </div>
+                            <div class="cart-product-quantity">
+                                <div class="cart-product-quantity-btn less center">-</div>
+                                <div class="cart-product-quantity-number">1</div>
+                                <div class="cart-product-quantity-btn plus center">+</div>
+                            </div>
+                        </div>
+                        <div class="cart-product-aside">
+                            <div class="cart-product-remove"><img src="img/svg/close-x.svg" /></div>
+                            <div class="cart-product-price">R$ 129,00</div>
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="cart-product-img">
+                            <img src="img/products/calca-jeans.jpg" />
+                        </div>
+                        <div class="cart-product-info">
+                            <div class="cart-product-name">Calça Jeans</div>
+                            <div class="cart-product-attributes">
+                                <div class="cart-product-size">Tam. M</div>
+                                <div class="cart-product-color">Azul</div>
+                            </div>
+                            <div class="cart-product-quantity">
+                                <div class="cart-product-quantity-btn less center">-</div>
+                                <div class="cart-product-quantity-number">1</div>
+                                <div class="cart-product-quantity-btn plus center">+</div>
+                            </div>
+                        </div>
+                        <div class="cart-product-aside">
+                            <div class="cart-product-remove"><img src="img/svg/close-x.svg" /></div>
+                            <div class="cart-product-price">R$ 89,00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-footer">
+                    <div class="total-price">
+                        <div class="total-price-title">Total a pagar:</div>
+                        <div class="total-price-value"> R$ 230,00</div>
+                    </div>
+                    <div class="btn-checkout">Ir para o pagamento</div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div class="main-content">
@@ -86,11 +153,10 @@
                     </div>
                 </div>
                 <a class="img-logo" href="app.html"><img class="img-logo" src="img/svg/logo.svg" /></a>
-                <img src="img/svg/shoppingbag.svg" />
-            </div>
-
-            <div class="block">
-
+                <div onclick="openCart()">
+                    <div class="cart-reddot center">1</div>
+                    <img class="shoppingbag" src="img/svg/shoppingbag.svg" />
+                </div>
             </div>
         </main>
 
@@ -102,7 +168,7 @@
             </ul>
         </footer>
     </div>
-
+    <div class="overlay"></div>
     <script src="js/app.js"></script>
 </body>
 </html>

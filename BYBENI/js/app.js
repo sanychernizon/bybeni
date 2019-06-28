@@ -14,7 +14,6 @@ function openCart() {
     
     cart.classList.add('cart-open')
     overlay.style.display = 'initial'
-
     overlay.addEventListener('click', closeCart)
 }
 
@@ -22,7 +21,6 @@ function closeCart() {
     let cart = document.querySelector('.cart-container');
     let overlay = document.querySelector('.overlay');
     
-
     cart.classList.remove('cart-open')
     overlay.style.display = 'none'
 }

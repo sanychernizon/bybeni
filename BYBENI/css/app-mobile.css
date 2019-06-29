@@ -1,5 +1,9 @@
 @media only screen and (max-width: 768px) {
 
+    .content-container {
+        padding: 60px 0 20px 0;
+    }
+
     .product-box {
         width: 50%;
         padding: 10px;
@@ -31,4 +35,32 @@
     .btn-nav:hover {
         background: #f4f4f4;
     }
+
+/* PRODUCT PAGE */
+
+    .product-page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-page-image {
+        display: flex;
+        width: 100%;
+    }
+
+    .product-thumbs {
+        display: none;
+    }
+
+    .product-page-info {
+        width: 100%;
+    }
+
+    .add-product-box {
+        position: fixed;
+        bottom: 0;
+        background: rgba(255, 255, 255, .8);
+        padding: 10px;
+    }
+
 }

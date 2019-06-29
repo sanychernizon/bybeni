@@ -63,4 +63,16 @@
         padding: 10px;
     }
 
+    /* CHECKOUT */
+
+    .checkout-body {
+        display: inline-block;
+        height: 90%;
+    }
+
+    .checkout-step {
+        width: 100%;
+        height: 100%;
+    }
+
 }

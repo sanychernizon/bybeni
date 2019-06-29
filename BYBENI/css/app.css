@@ -679,6 +679,7 @@ img {
     display: flex;
     flex-direction: column;
     padding: 15px;
+    overflow: auto;
 }
 
 .shipping-user-address {

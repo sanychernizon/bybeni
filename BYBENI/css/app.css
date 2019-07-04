@@ -445,9 +445,6 @@ img {
 
 .content-container {
     padding: 50px 0 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .catalog-grid {
@@ -836,6 +833,7 @@ img {
 .login-container input {
     margin: 5px;
     padding: 5px;
+    border-bottom: #666666 1px solid;
 }
 
 .input-login {
@@ -869,4 +867,37 @@ img {
     margin-bottom: 5px;
     padding: 5px;
     border-bottom: #666666 1px solid;
+}
+
+/* ## REGISTER ## */
+
+/* ACCOUNT */
+
+.account-container {
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-container h1 {
+    font-size: 1.4rem;
+    margin: 15px;
+}
+
+.account-container div {
+    border: 1px #cccccc solid;
+    padding: 15px;
+    margin: 5px;
+}
+
+.account-container div span {
+    padding: 10px;
+    border-right: 1px solid #cccccc;
+}
+
+.account-container div span:last-child {
+    border: none;
 }

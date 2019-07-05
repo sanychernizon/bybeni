@@ -1,0 +1,131 @@
+{
+    "product": [
+        {
+            "id": 1,
+            "name": "BERMUDA LONGA DE PANO",
+            "price": 89.90,
+            "category": "Bermuda",
+            "availableSizes": [
+                "P",
+                "M",
+                "G"
+            ],
+            "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
+            "imageURL": [
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Jaqueta de Couro Preta",
+            "price": 240.00,
+            "category": "Jaqueta",
+            "availableSizes": [
+                "P",
+                "M",
+                "G",
+                "GG"
+            ],
+            "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
+            "imageURL": [
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Camisa Polo de Seda",
+            "price": 140.50,
+            "category": "Camisa",
+            "availableSizes": [
+                "PP",
+                "P",
+                "M",
+                "G",
+                "GG"
+            ],
+            "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
+            "imageURL": [
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Calça Jeans",
+            "price": 180.22,
+            "category": "Calça",
+            "availableSizes": [
+                "P",
+                "M",
+                "G"
+            ],
+            "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
+            "imageURL": [
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Sapato de couro marrom",
+            "price": 319.90,
+            "category": "Sapato",
+            "availableSizes": [
+                "P",
+                "M",
+                "G"
+            ],
+            "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
+            "imageURL": [
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
+                "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
+            ]
+        }
+    ],
+    "user": [
+        {
+            "id": 1,
+            "name": "Sany",
+            "lastName": "Chernizon",
+            "email": "chernizon@gmail.com",
+            "password": "123456",
+            "cpf": 39722331833
+        }
+    ],
+    "order": [
+        {
+            "id": 1,
+            "userId": 1,
+            "date": "01/04/2019",
+            "status": "Aguardando o Pagamento",
+            "totalPrice": 230.47,
+            "items": [
+                2,
+                3
+            ]
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "date": "29/03/2019",
+            "status": "Aprovado",
+            "totalPrice": 127.00,
+            "items": [
+                1,
+                4
+            ]
+        }
+    ]
+}

@@ -1,55 +1,29 @@
 import React, { Component } from "react";
-import axios from "axios";
 import CartItem from "./Cart/CartItem";
 
 export class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedItems: this.props.cartSelectedItems,
-      products: []
-    };
-  }
 
-  getProducts = product => {
-    let products = [...this.state.products];
-    products.push(product);
-    this.setState({ products });
-  };
+  handleCartToggle = (event) => {
+    this.props.cartFunc(event)
+  }
 
   calcTotalPrice = () => {
-    return this.state.products.reduce((acc, value) => acc + value.price)
-  }
-
-  componentWillMount() {
-    let self = this;
-    this.state.selectedItems.map(function(item) {
-      axios
-        .get(`http://localhost:3004/product?id=${item.id}`)
-        .then(function(response) {
-          self.getProducts(response.data[0]);
-          // PROBLEMA COM O BIND!
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
+    return this.props.cartSelectedItems.reduce((acc, value) => acc + value.price, 0)
   }
 
   render() {
-    console.log(this.state.totalPrice)
     return (
-      <div className="cart-container">
+      <div className={this.props.cartIsOpen ? 'cart-container cart-open' : 'cart-container'}>
         <div className="cart">
           <div className="cart-header">
-            <div className="close-cart" onClick={null}>
+            <div className="close-cart" onClick={(event) => this.handleCartToggle(event)}>
               <img
                 src="https://res.cloudinary.com/bybeni/image/upload/v1562344970/close-x_feir8d.svg"
                 alt="x-close-icon"
               />
             </div>
             <div className="cart-title">
-              Sacola ({this.state.selectedItems.length})
+              Sacola ({this.props.cartSelectedItems.length})
             </div>
             <div className="cart-help">
               <img
@@ -59,8 +33,8 @@ export class Cart extends Component {
             </div>
           </div>
           <div className="cart-body">
-            {this.state.products.map((item, idx) => {
-              return <CartItem key={idx} product={item} />;
+            {this.props.cartSelectedItems.map((item, idx) => {
+              return <CartItem key={idx} product={item} cartRemoveItemFunc={this.props.cartRemoveItemFunc} />;
             })}
           </div>
           <div className="cart-footer">

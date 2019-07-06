@@ -37,7 +37,7 @@ class Menu extends Component {
 
     render(){
         return(
-            <nav className={ this.props.isOpen ? 'menu-container menu-on' : 'menu-container' }>
+            <nav className={ this.props.menuIsOpen ? 'menu-container menu-on' : 'menu-container' }>
                 <div className="user-menu">
                     <a href="app-account.html">
                         <div className="user-menu-box">

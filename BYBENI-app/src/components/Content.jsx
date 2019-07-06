@@ -8,9 +8,13 @@ class Content extends Component {
 
     render() {
         return(
-            <div className={ this.props.isOpen ? 'main-content main-on' : 'main-content' }>
+            <div className={ this.props.menuIsOpen ? 'main-content main-on' : 'main-content' }>
                 <main>
-                    <NavBar menuBtnFunc={this.props.funcs} isOpen={this.props.isOpen} />
+                    <NavBar 
+                      menuBtnFunc={this.props.menuFunc} 
+                      menuIsOpen={this.props.menuIsOpen} 
+                      cartBtnFunc={this.props.cartFunc}
+                    />
                     <Switch>
                         <Route path="/" component={Home} />
                         <Route path="/category/:categoryName" render={(props) => (<ProductList props={props} />)} />

@@ -6,11 +6,15 @@ class NavBar extends Component {
         this.props.menuBtnFunc(event)
     }
 
+    handleCartToggle = (event) => {
+      this.props.cartBtnFunc(event)
+    }
+
     render(){
         return(
             <div className="nav-bar">
                 <div className="btn-nav center" onClick={(event) => this.handleMenuToggle(event)}>
-                    <div className={ this.props.isOpen ? 'hamburger is-active' : 'hamburger'} id="hamburger">
+                    <div className={ this.props.menuIsOpen ? 'hamburger is-active' : 'hamburger'} id="hamburger">
                         <span className="line"></span>
                         <span className="line"></span>
                         <span className="line"></span>
@@ -19,7 +23,7 @@ class NavBar extends Component {
                 <div className="btn-nav-home">
                     <img className="img-logo" src="https://res.cloudinary.com/bybeni/image/upload/v1562344950/logo_h0kavt.png" alt="bybeni-logo"/>
                 </div>
-                <div className="btn-nav center" onClick={null}>
+                <div className="btn-nav center" onClick={(event) => this.handleCartToggle(event)}>
                     <div className="btn-shopping-bag">
                         <div className="cart-reddot center">1</div>
                         <img className="shoppingbag" src="https://res.cloudinary.com/bybeni/image/upload/v1562344971/shoppingbag_estdjb.svg" alt="shoppingbag" />

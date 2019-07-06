@@ -12,17 +12,20 @@ class Home extends Component {
     }
 
     componentWillMount() {
+        let products = []
         axios.get(`http://localhost:3004/product?isFeatured=true`)
             .then(function (response) {
-                this.setState({products: response.data})
+                products.push(response.data)
                 // PROBLEMA COM O BIND!
             })
             .catch(function (error) {
                 console.log(error);
             })
+        this.setState({products}) 
     }
 
     render(){
+        // console.log(this.state.products)
         return(
             <div>
                 

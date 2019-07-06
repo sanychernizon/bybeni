@@ -5,10 +5,10 @@ class CartItem extends Component {
         return(
             <div className="cart-product">
                 <div className="cart-product-img">
-                    <img src="img/products/camisa-polo.jpg" />
+                    <img src={this.props.product.imageURL[0]} alt={this.props.product.name}/>
                 </div>
                 <div className="cart-product-info">
-                    <div className="cart-product-name">Camisa Polo Seda de Festim com Estampa</div>
+                    <div className="cart-product-name">{this.props.product.name}</div>
                     <div className="cart-product-attributes">
                         <div className="cart-product-size">Tam. P</div>
                         <div className="cart-product-color">Branca</div>
@@ -20,8 +20,8 @@ class CartItem extends Component {
                     </div>
                 </div>
                 <div className="cart-product-aside">
-                    <div className="cart-product-remove"><img src="img/svg/close-x.svg" /></div>
-                    <div className="cart-product-price">R$ 129,00</div>
+                    <div className="cart-product-remove"><img src="https://res.cloudinary.com/bybeni/image/upload/v1562344970/close-x_feir8d.svg" alt="x-close-icon"/></div>
+                    <div className="cart-product-price">R$ {this.props.product.price}</div>
                 </div>
             </div>
         )

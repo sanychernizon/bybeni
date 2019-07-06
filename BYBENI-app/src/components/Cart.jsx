@@ -8,7 +8,7 @@ export class Cart extends Component {
   }
 
   calcTotalPrice = () => {
-    return this.props.cartSelectedItems.reduce((acc, value) => acc + value.price, 0)
+    return this.props.cartSelectedItems.reduce((acc, value) => acc + value.price, 0).toFixed(2)
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import axios from "axios";
+import "./App-mobile.css";
 import { Cart, Menu, Footer, Content, Overlay } from "./components";
 
 class App extends Component {

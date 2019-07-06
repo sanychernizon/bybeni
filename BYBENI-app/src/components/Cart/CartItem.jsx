@@ -26,7 +26,7 @@ class CartItem extends Component {
                 </div>
                 <div className="cart-product-aside">
                     <div className="cart-product-remove" onClick={() => this.handleRemoveCartItem()}><img src="https://res.cloudinary.com/bybeni/image/upload/v1562344970/close-x_feir8d.svg" alt="x-close-icon"/></div>
-                    <div className="cart-product-price">R$ {this.props.product.price}</div>
+                    <div className="cart-product-price">R$ {this.props.product.price.toFixed(2)}</div>
                 </div>
             </div>
         )

@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Catalog from "./Catalog";
 import Home from "./Home";
+import ProductPage from "./ProductPage";
 
 class Content extends Component {
   render() {
@@ -18,12 +19,16 @@ class Content extends Component {
             menuIsOpen={this.props.menuIsOpen}
             cartBtnFunc={this.props.cartFunc}
           />
-          <section class="content-container">
+          <section className="content-container">
             <Switch>
-              <Route path="/" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route
-                path="/category/:categoryName"
+                path="/moda-masculina/:categoryName"
                 render={props => <Catalog props={props} />}
+              />
+              <Route
+                path="/p/:productId"
+                render={props => <ProductPage props={props} />}
               />
             </Switch>
           </section>

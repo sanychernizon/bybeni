@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class ProductBox extends Component {
   render() {
     return (
       <div className="product-box">
-        <a href="app-product-page.html">
+        <Link to={`/p/${this.props.product.id}`}>
           <div className="product-box-info">
             <div className="product-box-image">
               <img src={this.props.product.imageURL[0]} alt={this.props.product.name}/>
@@ -17,7 +18,7 @@ class ProductBox extends Component {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
       </div>
     );
   }

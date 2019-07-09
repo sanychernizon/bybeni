@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -21,7 +22,7 @@ class NavBar extends Component {
                     </div>
                 </div>
                 <div className="btn-nav-home">
-                    <img className="img-logo" src="https://res.cloudinary.com/bybeni/image/upload/v1562344950/logo_h0kavt.png" alt="bybeni-logo"/>
+                    <Link to="/"><img className="img-logo" src="https://res.cloudinary.com/bybeni/image/upload/v1562344950/logo_h0kavt.png" alt="bybeni-logo"/></Link>
                 </div>
                 <div className="btn-nav center" onClick={(event) => this.handleCartToggle(event)}>
                     <div className="btn-shopping-bag">

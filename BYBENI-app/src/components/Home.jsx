@@ -27,11 +27,10 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.products);
     return (
       <div className="catalog-grid">
-        {this.state.products.map((item) => {
-          return <ProductBox product={item} />
+        {this.state.products.map((item, idx) => {
+          return <ProductBox key={idx} product={item} />
         })}
       </div>
     );

@@ -14,7 +14,7 @@ class App extends Component {
           id: 1,
           name: "BERMUDA LONGA DE PANO",
           price: 89.9,
-          category: "Bermuda",
+          category: "bermuda",
           availableSizes: ["P", "M", "G"],
           description:
             "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
@@ -30,7 +30,7 @@ class App extends Component {
           id: 2,
           name: "Jaqueta de Couro Preta",
           price: 240.0,
-          category: "Jaqueta",
+          category: "jaqueta",
           availableSizes: ["P", "M", "G", "GG"],
           description:
             "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",

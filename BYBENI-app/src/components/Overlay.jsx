@@ -10,7 +10,7 @@ class Overlay extends Component {
   }
 
   render() {
-    return <div class={this.overlayIsOn()} onClick={(event) => this.handleCartToggle(event)}/>;
+    return <div className={this.overlayIsOn()} onClick={(event) => this.handleCartToggle(event)}/>;
   }
 }
 

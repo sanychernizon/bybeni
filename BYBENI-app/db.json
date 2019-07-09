@@ -4,7 +4,7 @@
             "id": 1,
             "name": "BERMUDA LONGA DE PANO",
             "price": 89.90,
-            "category": "Bermuda",
+            "category": "bermuda",
             "availableSizes": [
                 "P",
                 "M",
@@ -23,7 +23,7 @@
             "id": 2,
             "name": "Jaqueta de Couro Preta",
             "price": 240.00,
-            "category": "Jaqueta",
+            "category": "jaqueta",
             "availableSizes": [
                 "P",
                 "M",
@@ -43,7 +43,7 @@
             "id": 3,
             "name": "Camisa Polo de Seda",
             "price": 140.50,
-            "category": "Camisa",
+            "category": "camisa",
             "availableSizes": [
                 "PP",
                 "P",
@@ -64,7 +64,7 @@
             "id": 4,
             "name": "Calça Jeans",
             "price": 180.22,
-            "category": "Calça",
+            "category": "calca",
             "availableSizes": [
                 "P",
                 "M",
@@ -83,7 +83,7 @@
             "id": 5,
             "name": "Sapato de couro marrom",
             "price": 319.90,
-            "category": "Sapato",
+            "category": "sapato",
             "availableSizes": [
                 "P",
                 "M",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import SizeButton from './Buttons/SizeButton'
 
 class ProductPage extends Component {
   constructor(props) {
@@ -43,29 +44,30 @@ class ProductPage extends Component {
         <div className="product-page-info">
           <h1>{this.state.product.name}</h1>
           <div className="product-page-cost">
-            <span>R$ 140,00</span>
-            <span>4x R$ 35,00</span>
+            <span>{this.state.product.price ? this.state.product.price.toFixed(2) : null}</span>
+            <span>5x R${(this.state.product.price / 5).toFixed(2)}</span>
           </div>
           <div className="product-page-sizes">
             <h5>Tamanho:</h5>
-            <div className="product-page-sizes-selector">
-              <div className="btn-product-page-size center">PP</div>
-              <div className="btn-product-page-size center">P</div>
-              <div className="btn-product-page-size center">M</div>
-              <div className="btn-product-page-size center">G</div>
-              <div className="btn-product-page-size center">GG</div>
-            </div>
-          </div>
-          <div className="add-product-box center">
-            <div className="btn-checkout">Adicionar à sacola</div>
+              <form className="form-product-page">
+                <div className="product-page-sizes-selector">
+                {
+                  this.state.product.availableSizes ?
+                  this.state.product.availableSizes.map((item) => {
+                    return <SizeButton size={item} />
+                  })
+                  : null
+                }
+                </div>
+                <div className="add-product-box center">
+                  <div className="btn-checkout">Adicionar à sacola</div>
+                </div>
+              </form>
           </div>
           <div className="product-page-description">
             <h5>Descrição:</h5>
             <p>
-              Com bolso embutido, a bermuda chino básica vem em duas opções de
-              cores, viabilizando mais opções de looks para o dia-a-dia. Com
-              bolso embutido, a bermuda chino básica vem em duas opções de
-              cores, viabilizando mais opções de looks para o dia-a-dia.
+              {this.state.product.description}
             </p>
           </div>
         </div>

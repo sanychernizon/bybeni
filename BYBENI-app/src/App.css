@@ -578,6 +578,7 @@ img {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  width: 100%;
 }
 
 .product-page-sizes-selector {
@@ -638,6 +639,14 @@ img {
   text-transform: uppercase;
   font-family: "Fjalla One", sans-serif;
   font-size: 1.2rem;
+}
+
+.form-product-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ## PRODUCT PAGE ## */

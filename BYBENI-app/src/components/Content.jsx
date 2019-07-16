@@ -28,7 +28,7 @@ class Content extends Component {
               />
               <Route
                 path="/p/:productId"
-                render={props => <ProductPage props={props} />}
+                render={props => <ProductPage props={props} addToCart={this.props.addToCart} />}
               />
             </Switch>
           </section>

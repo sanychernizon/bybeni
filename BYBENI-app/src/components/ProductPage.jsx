@@ -20,15 +20,22 @@ class ProductPage extends Component {
       .catch(function(error) {
         console.log(error);
       });
-  };
+  }
+
+  getProductSize = (size) => {
+    console.log(size)
+  }
+
+  handleAddToCart = () => {
+    this.props.addToCart('produto!', 'Tamanho!')
+  }
 
   componentDidMount() {
     this.getProducts(this.props.props.match.params.productId);
   }
 
   render() {
-    console.log(typeof this.state.product.imageURL);
-    console.log(this.state);
+    console.log(this.props.addToCart);
     return (
       <div className="product-page">
         <div className="product-page-image">
@@ -49,20 +56,20 @@ class ProductPage extends Component {
           </div>
           <div className="product-page-sizes">
             <h5>Tamanho:</h5>
-              <form className="form-product-page">
+              <div className="form-product-page">
                 <div className="product-page-sizes-selector">
                 {
                   this.state.product.availableSizes ?
-                  this.state.product.availableSizes.map((item) => {
-                    return <SizeButton size={item} />
+                  this.state.product.availableSizes.map((item, idx) => {
+                    return <SizeButton key={idx} size={item} getProductSize={this.getProductSize} />
                   })
                   : null
                 }
                 </div>
                 <div className="add-product-box center">
-                  <div className="btn-checkout">Adicionar à sacola</div>
+                  <div onClick={() => this.handleAddToCart()} className="btn-checkout">Adicionar à sacola</div>
                 </div>
-              </form>
+              </div>
           </div>
           <div className="product-page-description">
             <h5>Descrição:</h5>

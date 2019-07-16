@@ -60,6 +60,10 @@ class App extends Component {
     }
   };
 
+  addToCart = (product, size) => {
+    console.log(product, size)
+  }
+
   removeCartSelectedItem = productId => {
     let copyCartSelectedItems = [...this.state.cartSelectedItems];
     function isId(value) {
@@ -86,6 +90,7 @@ class App extends Component {
           menuIsOpen={this.state.menuIsOpen}
           menuFunc={this.toggleMenu}
           cartFunc={this.toggleCart}
+          addToCart={this.addToCart}
         />
         <Footer />
         <Overlay

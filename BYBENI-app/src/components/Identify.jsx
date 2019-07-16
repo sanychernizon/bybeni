@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Identify extends Component {
   render() {
@@ -16,7 +17,7 @@ class Identify extends Component {
             <input class="btn-checkout" type="submit" value="Entrar" />
           </div>
           <div>
-            <a href="/register">ou Cadastre-se agora!</a>
+            <Link to="/register">ou Cadastre-se agora!</Link>
           </div>
         </div>
       </section>

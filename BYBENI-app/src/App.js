@@ -24,23 +24,8 @@ class App extends Component {
             "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
             "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
           ],
-          isFeatured: true
-        },
-        {
-          id: 2,
-          name: "Jaqueta de Couro Preta",
-          price: 240.0,
-          category: "jaqueta",
-          availableSizes: ["P", "M", "G", "GG"],
-          description:
-            "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
-          imageURL: [
-            "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
-            "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
-            "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
-            "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
-          ],
-          isFeatured: true
+          isFeatured: true,
+          selectedSize: 'P'
         }
       ]
     };
@@ -60,9 +45,12 @@ class App extends Component {
     }
   };
 
-  addToCart = (product, size) => {
-    console.log(product, size)
-  }
+  addToCart = product => {
+    let copyCartSelectedItems = [...this.state.cartSelectedItems];
+    copyCartSelectedItems.push(product);
+    this.setState({ cartSelectedItems: copyCartSelectedItems });
+    this.setState({ cartIsOpen: true });
+  };
 
   removeCartSelectedItem = productId => {
     let copyCartSelectedItems = [...this.state.cartSelectedItems];
@@ -73,13 +61,12 @@ class App extends Component {
     this.setState({ cartSelectedItems: newCartSelectedItems });
   };
 
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
   render() {
     return (
       <div className="App">
-        <Menu menuIsOpen={this.state.menuIsOpen} />
+        <Menu menuIsOpen={this.state.menuIsOpen} menuFunc={this.toggleMenu} />
         <Cart
           cartIsOpen={this.state.cartIsOpen}
           cartFunc={this.toggleCart}
@@ -91,6 +78,7 @@ class App extends Component {
           menuFunc={this.toggleMenu}
           cartFunc={this.toggleCart}
           addToCart={this.addToCart}
+          cartSelectedItems={this.state.cartSelectedItems}
         />
         <Footer />
         <Overlay

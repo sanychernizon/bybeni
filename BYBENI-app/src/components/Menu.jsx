@@ -71,7 +71,7 @@ class Menu extends Component {
         </div>
         <ul>
           {this.state.categories.map((item, idx) => {
-            return <Link key={idx} to={`/moda-masculina/${item.slug}`}><MenuButton key={idx} props={item} /></Link>;
+            return <Link key={idx} to={`/moda-masculina/${item.slug}`}><MenuButton key={idx} props={item} menuFunc={this.props.menuFunc} /></Link>;
           })}
         </ul>
       </nav>

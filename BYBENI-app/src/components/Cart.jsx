@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CartItem from "./Cart/CartItem";
+
 
 export class Cart extends Component {
 
@@ -44,9 +46,9 @@ export class Cart extends Component {
                 R$ {this.calcTotalPrice()}
               </div>
             </div>
-            <a href="checkout.html" className="btn-checkout">
+            <Link to='/checkout' className="btn-checkout" onClick={(event) => this.handleCartToggle(event)}>
               Ir para o pagamento
-            </a>
+            </Link>
           </div>
         </div>
       </div>

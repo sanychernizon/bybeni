@@ -37,11 +37,13 @@ class Catalog extends Component {
 
   render() {
     return (
-      <div className="catalog-grid">
-        {this.state.products.map((item, idx) => {
-          return <ProductBox key={idx} product={item} />;
-        })}
-      </div>
+      <section className="content-container">
+        <div className="catalog-grid">
+          {this.state.products.map((item, idx) => {
+            return <ProductBox key={idx} product={item} />;
+          })}
+        </div>
+      </section>
     );
   }
 }

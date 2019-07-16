@@ -106,7 +106,16 @@
             "lastName": "Chernizon",
             "email": "chernizon@gmail.com",
             "password": "123456",
-            "cpf": 39722331833
+            "cpf": "39722331833",
+            "address": {
+              "street": "Rua Emilio de Menezes",
+              "number": "56",
+              "adjunct": "apto 91",
+              "city": "São Paulo",
+              "state": "SP",
+              "neighborhood": "Santa Cecília",
+              "zip": "01231020"
+            }
         }
     ],
     "order": [

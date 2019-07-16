@@ -15,7 +15,7 @@ class Home extends Component {
     axios
       .get(`http://localhost:3004/product?isFeatured=true`)
       .then(function(response) {
-        self.setState({products: response.data})
+        self.setState({ products: response.data });
       })
       .catch(function(error) {
         console.log(error);
@@ -23,16 +23,18 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    this.getProducts()
+    this.getProducts();
   }
 
   render() {
     return (
-      <div className="catalog-grid">
-        {this.state.products.map((item, idx) => {
-          return <ProductBox key={idx} product={item} />
-        })}
-      </div>
+      <section className="content-container">
+        <div className="catalog-grid">
+          {this.state.products.map((item, idx) => {
+            return <ProductBox key={idx} product={item} />;
+          })}
+        </div>
+      </section>
     );
   }
 }

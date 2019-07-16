@@ -26,7 +26,7 @@ class NavBar extends Component {
                 </div>
                 <div className="btn-nav center" onClick={(event) => this.handleCartToggle(event)}>
                     <div className="btn-shopping-bag">
-                        <div className="cart-reddot center">1</div>
+                        <div className="cart-reddot center">{this.props.qtdItemsInCart}</div>
                         <img className="shoppingbag" src="https://res.cloudinary.com/bybeni/image/upload/v1562344971/shoppingbag_estdjb.svg" alt="shoppingbag" />
                     </div>
                 </div>

@@ -207,6 +207,7 @@ img {
   right: 55px;
   font-size: 0.8rem;
   cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 /* MENU ANIMATION */
@@ -659,6 +660,7 @@ img {
   justify-content: center;
   align-items: center;
   height: 100%;
+  font-family: "Archivo Narrow", sans-serif;
 }
 
 .checkout-header {

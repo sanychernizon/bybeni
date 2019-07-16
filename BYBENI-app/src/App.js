@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./App-mobile.css";
-import { Cart, Menu, Footer, Content, Overlay } from "./components";
+import { Cart, Menu, Content, Overlay } from "./components";
 
 class App extends Component {
   constructor() {
@@ -80,7 +80,6 @@ class App extends Component {
           addToCart={this.addToCart}
           cartSelectedItems={this.state.cartSelectedItems}
         />
-        <Footer />
         <Overlay
           cartIsOpen={this.state.cartIsOpen}
           cartFunc={this.toggleCart}

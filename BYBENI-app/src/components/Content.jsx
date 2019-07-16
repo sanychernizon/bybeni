@@ -7,6 +7,7 @@ import ProductPage from "./ProductPage";
 import Checkout from "./Checkout";
 import Identify from "./Identify";
 import Register from "./Register";
+import Footer from "./Footer"
 
 class Content extends Component {
   render() {
@@ -53,6 +54,7 @@ class Content extends Component {
               render={props => <Register props={props} />}
             />
           </Switch>
+          <Footer />
         </main>
       </div>
     );

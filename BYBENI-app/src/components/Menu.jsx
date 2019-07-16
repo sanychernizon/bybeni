@@ -47,6 +47,10 @@ class Menu extends Component {
     };
   }
 
+  handleMenuToggle = (event) => {
+    this.props.menuFunc(event)
+  }
+
   render() {
     return (
       <nav
@@ -56,7 +60,7 @@ class Menu extends Component {
       >
         <div className="user-menu">
           <Link to='/identify'>
-            <div className="user-menu-box">
+            <div className="user-menu-box" onClick={(event) => this.handleMenuToggle(event)}>
               <div className="user-thumbnail">
                 <img
                   src="https://res.cloudinary.com/bybeni/image/upload/v1562344972/user_zd2wcl.svg"

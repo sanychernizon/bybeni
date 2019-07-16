@@ -5,6 +5,8 @@ import Catalog from "./Catalog";
 import Home from "./Home";
 import ProductPage from "./ProductPage";
 import Checkout from "./Checkout";
+import Identify from "./Identify";
+import Register from "./Register";
 
 class Content extends Component {
   render() {
@@ -35,7 +37,20 @@ class Content extends Component {
             />
             <Route
               path="/checkout"
-              render={props => <Checkout props={props} cartSelectedItems={this.props.cartSelectedItems} />}
+              render={props => (
+                <Checkout
+                  props={props}
+                  cartSelectedItems={this.props.cartSelectedItems}
+                />
+              )}
+            />
+            <Route
+              path="/identify"
+              render={props => <Identify props={props} />}
+            />
+            <Route
+              path="/register"
+              render={props => <Register props={props} />}
             />
           </Switch>
         </main>

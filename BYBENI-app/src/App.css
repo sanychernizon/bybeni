@@ -599,6 +599,7 @@ img {
 .btn-product-page-size:hover {
   background: #eeeeee;
   border: 1px solid #cccccc;
+  color: #333333;
 }
 
 .isActive {

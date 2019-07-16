@@ -8,7 +8,8 @@ class ProductPage extends Component {
     this.state = {
       product: "",
       productSelected: null,
-      sizeAlert: false
+      sizeAlert: false,
+      selectedSizeBtn: null
     };
   }
 
@@ -24,11 +25,13 @@ class ProductPage extends Component {
       });
   };
 
-  getProductSize = size => {
+  getProductSize = (size, idx) => {
     let copyProduct = this.state.product;
     copyProduct.selectedSize = size;
     this.setState({ productSelected: copyProduct });
     this.setState({ sizeAlert: false });
+    this.setState({ selectedSizeBtn: idx });
+    console.log(this.state.selectedSizeBtn)
   };
 
   handleAddToCart = () => {
@@ -104,8 +107,10 @@ class ProductPage extends Component {
                         return (
                           <SizeButton
                             key={idx}
+                            idx={idx}
                             size={item}
                             getProductSize={this.getProductSize}
+                            selectedSizeBtn={this.state.selectedSizeBtn}
                           />
                         );
                       })

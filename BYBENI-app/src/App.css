@@ -601,7 +601,7 @@ img {
   border: 1px solid #cccccc;
 }
 
-.btn-product-page-size:active {
+.isActive {
   background: #111111;
   border: 1px solid #111111;
   color: #f4f4f4;

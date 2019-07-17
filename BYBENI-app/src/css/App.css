@@ -86,13 +86,13 @@ img {
   transition: left 0.3s;
 }
 
-.container-menu ul {
+.menu-container ul {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.container-menu ul li {
+.menu-container ul a li {
   width: 100%;
   background: #f4f4f4;
   border-bottom: #cccccc 1px solid;

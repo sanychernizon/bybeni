@@ -20,8 +20,7 @@
       "isFeatured": true
     },
     {
-      "id": 2,
-      "name": "Jaqueta de Couro Preta",
+      "name": "Jaqueta de ",
       "price": 240,
       "category": "jaqueta",
       "availableSizes": [
@@ -32,12 +31,10 @@
       ],
       "description": "Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia. Com bolso embutido, a bermuda chino básica vem em duas opções de cores, viabilizando mais opções de looks para o dia-a-dia.",
       "imageURL": [
-        "https://res.cloudinary.com/bybeni/image/upload/v1562284335/jaqueta-couro_fmbtrq.jpg",
-        "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg",
-        "https://res.cloudinary.com/bybeni/image/upload/v1562284335/camisa-polo_iofbrf.jpg",
-        "https://res.cloudinary.com/bybeni/image/upload/v1562284335/calca-jeans_enwihg.jpg"
+        "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg"
       ],
-      "isFeatured": true
+      "isFeatured": true,
+      "id": 2
     },
     {
       "id": 3,
@@ -126,8 +123,7 @@
       "isFeatured": false
     },
     {
-      "id": 8,
-      "name": "SANYYYYY",
+      "name": "SANY",
       "price": "321321",
       "category": "camiseta",
       "availableSizes": [
@@ -137,7 +133,8 @@
       "imageURL": [
         "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg"
       ],
-      "isFeatured": false
+      "isFeatured": false,
+      "id": 8
     }
   ],
   "user": [

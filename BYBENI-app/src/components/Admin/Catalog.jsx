@@ -103,7 +103,7 @@ class Catalog extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  updateProduct = item => {
+  showProduct = item => {
     this.setState({
       modalUpdateIsOpen: true,
       updateProduct: item
@@ -167,7 +167,7 @@ class Catalog extends Component {
             {this.state.products
               ? this.state.products.map((item, idx) => {
                   return (
-                    <tr key={idx} onClick={() => this.updateProduct(item)}>
+                    <tr key={idx} onClick={() => this.showProduct(item)}>
                       <CatalogProduct key={idx} product={item} />
                     </tr>
                   );
@@ -187,6 +187,7 @@ class Catalog extends Component {
           <ModalUpdateProduct
             closeModal={this.closeUpdateModal}
             product={this.state.updateProduct}
+            updateProduct={this.updateProduct}
           />
         ) : (
           ""

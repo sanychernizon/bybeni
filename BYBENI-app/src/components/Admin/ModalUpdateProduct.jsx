@@ -20,6 +20,7 @@ class ModalUpdateProduct extends Component {
   };
 
   handleUpdateProduct = () => {
+    console.log(this.props.updateProduct)
     this.props.updateProduct(
       this.state.id,
       this.state.name,
@@ -69,6 +70,7 @@ class ModalUpdateProduct extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <div id="modal-add-product">
         <div class="modal-background" />
@@ -235,8 +237,8 @@ class ModalUpdateProduct extends Component {
             </div>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success is-fullwidth" onClick={() => this.handleAddProduct()}>
-              Salvar produto
+            <button class="button is-success is-fullwidth" onClick={() => this.handleUpdateProduct()}>
+              Atualizar
             </button>
           </footer>
         </div>

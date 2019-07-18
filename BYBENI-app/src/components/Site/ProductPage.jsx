@@ -6,7 +6,7 @@ class ProductPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: "",
+      product: [],
       productSelected: null,
       sizeAlert: false,
       selectedSizeBtn: null
@@ -28,6 +28,7 @@ class ProductPage extends Component {
   getProductSize = (size, idx) => {
     let copyProduct = this.state.product;
     copyProduct.selectedSize = size;
+    copyProduct.id = copyProduct + size;
     this.setState({ productSelected: copyProduct });
     this.setState({ sizeAlert: false });
     this.setState({ selectedSizeBtn: idx });

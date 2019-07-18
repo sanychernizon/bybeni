@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
-class ModalAddProduct extends Component {
+class ModalUpdateProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
-      name: null,
-      price: null,
-      category: null,
-      availableSizes: [],
-      description: null,
+      id: this.props.product.id,
+      name: this.props.product.name,
+      price: this.props.product.price,
+      category: this.props.product.category,
+      availableSizes: this.props.product.availableSizes,
+      description: this.props.product.description,
       imageURL: [],
-      isFeatured: false
+      isFeatured: this.props.product.isFeatured
     };
   }
 
@@ -19,8 +19,9 @@ class ModalAddProduct extends Component {
     this.props.closeModal();
   };
 
-  handleAddProduct = () => {
-    this.props.addProduct(
+  handleUpdateProduct = () => {
+    this.props.updateProduct(
+      this.state.id,
       this.state.name,
       this.state.price,
       this.state.category,
@@ -68,7 +69,6 @@ class ModalAddProduct extends Component {
   };
 
   render() {
-    console.log(this.props.product);
     return (
       <div id="modal-add-product">
         <div class="modal-background" />
@@ -90,6 +90,7 @@ class ModalAddProduct extends Component {
                   class="input"
                   type="text"
                   placeholder="ex. Camiseta Branca Básica"
+                  value={this.state.name}
                   onChange={e => this.handleName(e)}
                 />
               </div>
@@ -97,13 +98,14 @@ class ModalAddProduct extends Component {
             <label class="label">Preço</label>
             <div class="field has-addons">
               <p class="control">
-                <a class="button is-static">R$</a>
+                <span class="button is-static">R$</span>
               </p>
               <p class="control">
                 <input
                   class="input"
                   type="number"
                   placeholder="ex. 125.20"
+                  value={this.state.price}
                   onChange={e => this.handlePrice(e)}
                 />
               </p>
@@ -157,6 +159,7 @@ class ModalAddProduct extends Component {
                     type="checkbox"
                     name="GG"
                     value="GG"
+                    // { ...this.state.availableSizes["M"] ?  'checked' : null }
                     onChange={e => this.handleAvailableSizes(e)}
                   />
                   GG
@@ -167,7 +170,7 @@ class ModalAddProduct extends Component {
               <label class="label">Categoria</label>
               <div class="control">
                 <div class="select">
-                  <select onChange={e => this.handleCategory(e)}>
+                  <select onChange={e => this.handleCategory(e)} value={this.state.category}>
                     <option>Selecionar categoria</option>
                     <option value="camisa">Camisa</option>
                     <option value="camiseta">Camiseta</option>
@@ -186,7 +189,7 @@ class ModalAddProduct extends Component {
                     class="checkbox"
                     type="checkbox"
                     name="isFeatured"
-                    value="true"
+                    // value={this.state.isFeatured}
                     onChange={e => this.handleIsFeatured(e)}
                   />
                   Produto em destaque?
@@ -199,6 +202,7 @@ class ModalAddProduct extends Component {
                 <textarea
                   class="textarea"
                   placeholder="Escreva a descrição aqui..."
+                  value={this.state.description}
                   onChange={e => this.handleDescription(e)}
                 />
               </div>
@@ -241,4 +245,4 @@ class ModalAddProduct extends Component {
   }
 }
 
-export default ModalAddProduct;
+export default ModalUpdateProduct;

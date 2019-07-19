@@ -23,10 +23,10 @@ class Catalog extends Component {
     let self = this;
     axios
       .get(`http://localhost:3004/product`)
-      .then(function(response) {
+      .then(function (response) {
         self.setState({ products: response.data });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -40,7 +40,7 @@ class Catalog extends Component {
     description,
     isFeatured
   ) => {
-    this.getProducts();
+    const getProducts = this.getProducts;
     axios
       .put(`http://localhost:3004/product/${id}`, {
         name: name,
@@ -53,10 +53,10 @@ class Catalog extends Component {
         ],
         isFeatured: isFeatured
       })
-      .then(function(response) {
-        console.log(response);
+      .then(function (response) {
+        getProducts()
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
     this.closeUpdateModal();
@@ -71,7 +71,7 @@ class Catalog extends Component {
     description,
     isFeatured
   ) => {
-    this.getProducts();
+    const getProducts = this.getProducts;
     axios
       .post("http://localhost:3004/product", {
         id: this.state.products.length + 1,
@@ -85,15 +85,26 @@ class Catalog extends Component {
         ],
         isFeatured: isFeatured
       })
-      .then(function(response) {
-        console.log(response);
+      .then(function (response) {
+        getProducts();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
     this.closeModal();
-    this.getProducts();
   };
+
+  deleteProduct = (id) => {
+    const getProducts = this.getProducts;
+    axios.delete(`http://localhost:3004/product/${id}`)
+      .then(function (response) {
+        getProducts();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });;
+    this.closeUpdateModal();
+  }
 
   openModal = () => {
     this.setState({ modalIsOpen: true });
@@ -160,18 +171,17 @@ class Catalog extends Component {
               <th>Produto</th>
               <th>Categoria</th>
               <th>Preço</th>
-              <th>Estoque</th>
             </tr>
           </thead>
           <tbody>
             {this.state.products
               ? this.state.products.map((item, idx) => {
-                  return (
-                    <tr key={idx} onClick={() => this.showProduct(item)}>
-                      <CatalogProduct key={idx} product={item} />
-                    </tr>
-                  );
-                })
+                return (
+                  <tr key={idx} onClick={() => this.showProduct(item)}>
+                    <CatalogProduct key={idx} product={item} deleteFunc={this.deleteProduct} />
+                  </tr>
+                );
+              })
               : null}
           </tbody>
         </table>
@@ -181,17 +191,18 @@ class Catalog extends Component {
             addProduct={this.addProduct}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
         {this.state.modalUpdateIsOpen ? (
           <ModalUpdateProduct
             closeModal={this.closeUpdateModal}
             product={this.state.updateProduct}
             updateProduct={this.updateProduct}
+            deleteFunc={this.deleteProduct}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
       </div>
     );
   }

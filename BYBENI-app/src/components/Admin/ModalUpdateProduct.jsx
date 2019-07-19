@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CheckboxSize from './CheckboxSize';
 
 class ModalUpdateProduct extends Component {
   constructor(props) {
@@ -13,11 +14,17 @@ class ModalUpdateProduct extends Component {
       imageURL: [],
       isFeatured: this.props.product.isFeatured
     };
+    this.sizes = ["PP","P","M","G","GG"]
   }
 
   handleCloseModal = () => {
     this.props.closeModal();
   };
+
+  handleDeleteProduct = (id) => {
+    this.props.deleteFunc(id)
+
+  }
 
   handleUpdateProduct = () => {
     console.log(this.props.updateProduct)
@@ -70,7 +77,6 @@ class ModalUpdateProduct extends Component {
   };
 
   render() {
-    console.log(this.state)
     return (
       <div id="modal-add-product">
         <div class="modal-background" />
@@ -115,57 +121,9 @@ class ModalUpdateProduct extends Component {
             <div class="field">
               <label class="label">Tamanhos Disponíveis</label>
               <div class="control">
-                <label class="radio">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="PP"
-                    value="PP"
-                    onChange={e => this.handleAvailableSizes(e)}
-                  />
-                  PP
-                </label>
-                <label class="radio">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="P"
-                    value="P"
-                    onChange={e => this.handleAvailableSizes(e)}
-                  />
-                  P
-                </label>
-                <label class="radio">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="M"
-                    value="M"
-                    onChange={e => this.handleAvailableSizes(e)}
-                  />
-                  M
-                </label>
-                <label class="radio">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="G"
-                    value="G"
-                    onChange={e => this.handleAvailableSizes(e)}
-                  />
-                  G
-                </label>
-                <label class="radio">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="GG"
-                    value="GG"
-                    // { ...this.state.availableSizes["M"] ?  'checked' : null }
-                    onChange={e => this.handleAvailableSizes(e)}
-                  />
-                  GG
-                </label>
+                {this.sizes.map((item, idx) => {
+                  return <CheckboxSize key={idx} size={item} availableSizes={this.state.availableSizes} handleAvailableSizes={this.handleAvailableSizes} />
+                })}
               </div>
             </div>
             <div class="field">
@@ -191,7 +149,7 @@ class ModalUpdateProduct extends Component {
                     class="checkbox"
                     type="checkbox"
                     name="isFeatured"
-                    // value={this.state.isFeatured}
+                    checked={this.state.isFeatured ? true : false}
                     onChange={e => this.handleIsFeatured(e)}
                   />
                   Produto em destaque?
@@ -237,6 +195,9 @@ class ModalUpdateProduct extends Component {
             </div>
           </section>
           <footer class="modal-card-foot">
+            <button class="button is-danger is-fullwidth" onClick={() => this.handleDeleteProduct(this.props.product.id)}>
+              Deletar
+            </button>
             <button class="button is-success is-fullwidth" onClick={() => this.handleUpdateProduct()}>
               Atualizar
             </button>

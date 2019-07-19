@@ -13,8 +13,8 @@ class ProductBox extends Component {
             <h4>{this.props.product.name}</h4>
             <div className="product-box-pricing">
               <div className="product-box-cost">
-                <span>{this.props.product.price.toFixed(2)}</span>
-                <span>5x R${(this.props.product.price / 5).toFixed(2)}</span>
+                <span>{parseInt(this.props.product.price).toFixed(2)}</span>
+                <span>5x R${(parseInt(this.props.product.price) / 5).toFixed(2)}</span>
               </div>
             </div>
           </div>

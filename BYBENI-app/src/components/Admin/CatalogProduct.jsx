@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
 class CatalogProduct extends Component {
+
+  handleDeleteProduct = (id) => {
+    this.props.deleteFunc(id)
+  }
+
   render() {
     return (
       <>
@@ -17,10 +22,7 @@ class CatalogProduct extends Component {
           <div class="td-margin">{this.props.product.category}</div>
         </td>
         <td>
-          <div class="td-margin">R$ {this.props.product.price}</div>
-        </td>
-        <td>
-          <div class="td-margin">20</div>
+          <div class="td-margin">R$ {parseFloat(this.props.product.price).toFixed(2)}</div>
         </td>
       </>
     );

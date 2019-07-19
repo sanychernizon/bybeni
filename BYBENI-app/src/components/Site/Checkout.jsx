@@ -9,7 +9,7 @@ class Checkout extends Component {
 
   calcTotalPrice = () => {
     return this.props.cartSelectedItems
-      .reduce((acc, value) => acc + value.price, 0)
+      .reduce((acc, value) => acc + parseInt(value.price), 0)
       .toFixed(2);
   };
 

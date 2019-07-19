@@ -94,10 +94,10 @@ class ProductPage extends Component {
             <div className="product-page-cost">
               <span>
                 {this.state.product.price
-                  ? this.state.product.price.toFixed(2)
+                  ? parseInt(this.state.product.price).toFixed(2)
                   : null}
               </span>
-              <span>5x R${(this.state.product.price / 5).toFixed(2)}</span>
+              <span>5x R${(parseInt(this.state.product.price) / 5).toFixed(2)}</span>
             </div>
             <div className="product-page-sizes">
               <h5>Tamanho:</h5>

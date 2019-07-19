@@ -25,7 +25,7 @@ class CheckoutCartItem extends Component {
         <div class="cart-product-aside">
           <div />
           <div class="cart-product-price">
-            R$ {this.props.product.price.toFixed(2)}
+            R$ {parseInt(this.props.product.price).toFixed(2)}
           </div>
         </div>
       </div>

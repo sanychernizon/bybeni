@@ -39,7 +39,7 @@ class CartItem extends Component {
             />
           </div>
           <div className="cart-product-price">
-            R$ {this.props.product.price.toFixed(2)}
+            R$ {parseInt(this.props.product.price).toFixed(2)}
           </div>
         </div>
       </div>

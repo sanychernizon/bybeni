@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class ModalAddProduct extends Component {
   constructor(props) {
@@ -10,8 +11,9 @@ class ModalAddProduct extends Component {
       category: null,
       availableSizes: [],
       description: null,
-      imageURL: [],
-      isFeatured: false
+      imageURL: null,
+      isFeatured: false,
+      file: null
     };
   }
 
@@ -26,6 +28,7 @@ class ModalAddProduct extends Component {
       this.state.category,
       this.state.availableSizes,
       this.state.description,
+      this.state.imageURL,
       this.state.isFeatured
     );
   };
@@ -59,6 +62,34 @@ class ModalAddProduct extends Component {
     this.setState({ description: event.target.value });
   };
 
+  handleImageUrl = event => {
+    // event.preventDefault();
+    console.log("Handle Image URL");
+    const formData = new FormData();
+    formData.append("photo", this.state.file);
+
+    let self = this;
+    axios({
+      method: "post",
+      url: "http://localhost:3004/api/product/upload",
+      data: formData,
+      config: { headers: { "Content-Type": "multipart/form-data" } }
+    })
+      .then(function(response) {
+        console.log("Resposta AXIOS");
+        console.log(response);
+        self.setState({ imageURL: response.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+
+  handleFile = e => {
+    console.log(e.target.files[0])
+    this.setState({ file: e.target.files[0] });
+  };
+
   handleIsFeatured = event => {
     if (event.target.checked) {
       this.setState({ isFeatured: true });
@@ -68,52 +99,51 @@ class ModalAddProduct extends Component {
   };
 
   render() {
-    console.log(this.props.product);
     return (
       <div id="modal-add-product">
-        <div class="modal-background" />
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title" />
+        <div className="modal-background" />
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title" />
             <button
               id="btn-close-modal"
-              class="delete"
+              className="delete"
               aria-label="close"
               onClick={() => this.handleCloseModal()}
             />
           </header>
-          <section class="modal-card-body">
-            <div class="field">
-              <label class="label">Nome do Produto</label>
-              <div class="control">
+          <section className="modal-card-body">
+            <div className="field">
+              <label className="label">Nome do Produto</label>
+              <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   placeholder="ex. Camiseta Branca Básica"
                   onChange={e => this.handleName(e)}
                 />
               </div>
             </div>
-            <label class="label">Preço</label>
-            <div class="field has-addons">
-              <p class="control">
-                <a class="button is-static">R$</a>
+            <label className="label">Preço</label>
+            <div className="field has-addons">
+              <p className="control">
+                <a className="button is-static">R$</a>
               </p>
-              <p class="control">
+              <p className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="number"
                   placeholder="ex. 125.20"
                   onChange={e => this.handlePrice(e)}
                 />
               </p>
             </div>
-            <div class="field">
-              <label class="label">Tamanhos Disponíveis</label>
-              <div class="control">
-                <label class="radio">
+            <div className="field">
+              <label className="label">Tamanhos Disponíveis</label>
+              <div className="control">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="PP"
                     value="PP"
@@ -121,9 +151,9 @@ class ModalAddProduct extends Component {
                   />
                   PP
                 </label>
-                <label class="radio">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="P"
                     value="P"
@@ -131,9 +161,9 @@ class ModalAddProduct extends Component {
                   />
                   P
                 </label>
-                <label class="radio">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="M"
                     value="M"
@@ -141,9 +171,9 @@ class ModalAddProduct extends Component {
                   />
                   M
                 </label>
-                <label class="radio">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="G"
                     value="G"
@@ -151,9 +181,9 @@ class ModalAddProduct extends Component {
                   />
                   G
                 </label>
-                <label class="radio">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="GG"
                     value="GG"
@@ -163,10 +193,10 @@ class ModalAddProduct extends Component {
                 </label>
               </div>
             </div>
-            <div class="field">
-              <label class="label">Categoria</label>
-              <div class="control">
-                <div class="select">
+            <div className="field">
+              <label className="label">Categoria</label>
+              <div className="control">
+                <div className="select">
                   <select onChange={e => this.handleCategory(e)}>
                     <option>Selecionar categoria</option>
                     <option value="camisa">Camisa</option>
@@ -179,11 +209,11 @@ class ModalAddProduct extends Component {
                 </div>
               </div>
             </div>
-            <div class="field">
-              <div class="control">
-                <label class="radio">
+            <div className="field">
+              <div className="control">
+                <label className="radio">
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     name="isFeatured"
                     value="true"
@@ -193,45 +223,41 @@ class ModalAddProduct extends Component {
                 </label>
               </div>
             </div>
-            <div class="field">
-              <label class="label">Descrição do Produto</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Descrição do Produto</label>
+              <div className="control">
                 <textarea
-                  class="textarea"
+                  className="textarea"
                   placeholder="Escreva a descrição aqui..."
                   onChange={e => this.handleDescription(e)}
                 />
               </div>
             </div>
-            <div class="file has-name">
-              <label class="file-label">
-                <input class="file-input" type="file" name="resume" />
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#3b3b3b"
-                      stroke-width="2"
-                      stroke-linecap="square"
-                      stroke-linejoin="arcs"
-                    >
-                      <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 4.2v10.3" />
-                    </svg>
-                  </span>
-                  <span class="file-label">Escolher imagens…</span>
-                </span>
-                <span class="file-name">
-                  Screen Shot 2017-07-29 at 15.54.25.png
-                </span>
+            <img className='thumb-img' src={this.state.imageURL} alt='img'/>
+            <div className="file has-name">
+              <label className="file-label">
+                <div className="file-cta">
+                  <input
+                    className="file-label"
+                    type="file"
+                    name="photos"
+                    onChange={e => this.handleFile(e)}
+                  />
+                </div>
+                <input
+                  className="button"
+                  type="submit"
+                  value="Salvar"
+                  onClick={e => this.handleImageUrl(e)}
+                />
               </label>
             </div>
           </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success is-fullwidth" onClick={() => this.handleAddProduct()}>
+          <footer className="modal-card-foot">
+            <button
+              className="button is-success is-fullwidth"
+              onClick={() => this.handleAddProduct()}
+            >
               Salvar produto
             </button>
           </footer>

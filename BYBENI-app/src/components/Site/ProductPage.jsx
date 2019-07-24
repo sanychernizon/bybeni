@@ -16,7 +16,7 @@ class ProductPage extends Component {
   getProducts = productId => {
     let self = this;
     axios
-      .get(`http://localhost:3004/product?id=${productId}`)
+      .get(`http://localhost:3004/api/product?id=${productId}`)
       .then(function(response) {
         self.setState({ product: response.data[0] });
       })

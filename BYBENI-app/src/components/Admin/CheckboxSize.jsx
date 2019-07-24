@@ -8,9 +8,9 @@ class CheckboxSize extends Component {
 
   render() {
     return (
-      <label class="radio">
+      <label className="radio">
         <input
-          class="checkbox"
+          className="checkbox"
           type="checkbox"
           name={this.props.size}
           value={this.props.size}

@@ -4,11 +4,11 @@ class Costumers extends Component {
   render() {
     return (
       <div>
-        <div class="center-column">
-          <h1 class="title is-4">Costumers</h1>
-          {/* <div class="search-bar center">
-            <input class="input" type="text" placeholder="Search costumer" />
-              <div class="select">
+        <div className="center-column">
+          <h1 className="title is-4">Costumers</h1>
+          {/* <div className="search-bar center">
+            <input className="input" type="text" placeholder="Search costumer" />
+              <div className="select">
                 <select>
                   <option>ID</option>
                   <option>Nome</option>
@@ -16,7 +16,7 @@ class Costumers extends Component {
                 </select>
               </div>
             </div> */}
-            <table class="table is-hoverable is-fullwidth">
+            <table className="table is-hoverable is-fullwidth">
               <thead>
                 <tr>
                   <th><abbr title="ID">#</abbr></th>

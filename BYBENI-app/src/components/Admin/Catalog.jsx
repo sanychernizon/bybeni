@@ -20,13 +20,14 @@ class Catalog extends Component {
   }
 
   getProducts = () => {
+    console.log('GET PRODUCTS')
     let self = this;
     axios
-      .get(`http://localhost:3004/product`)
-      .then(function (response) {
-        self.setState({ products: response.data });
+      .get(`http://localhost:3004/api/product`)
+      .then(function(response) {
+          self.setState({ products: response.data });          
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
@@ -38,29 +39,27 @@ class Catalog extends Component {
     category,
     availableSizes,
     description,
+    imageURL,
     isFeatured
   ) => {
     const getProducts = this.getProducts;
     axios
-      .put(`http://localhost:3004/product/${id}`, {
+      .put(`http://localhost:3004/api/product/${id}`, {
         name: name,
         price: price,
         category: category,
         availableSizes: availableSizes,
         description: description,
-        imageURL: [
-          "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg"
-        ],
+        imageURL: imageURL,
         isFeatured: isFeatured
       })
-      .then(function (response) {
-        getProducts()
+      .then((response) => {
+        getProducts();
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
     this.closeUpdateModal();
-    this.getProducts();
   };
 
   addProduct = (
@@ -69,26 +68,26 @@ class Catalog extends Component {
     category,
     availableSizes,
     description,
+    imageURL,
     isFeatured
   ) => {
     const getProducts = this.getProducts;
+    const newProduct = {
+      name: name,
+      price: price,
+      category: category,
+      availableSizes: availableSizes,
+      description: description,
+      imageURL: imageURL,
+      isFeatured: isFeatured
+    };
     axios
-      .post("http://localhost:3004/product", {
-        id: this.state.products.length + 1,
-        name: name,
-        price: price,
-        category: category,
-        availableSizes: availableSizes,
-        description: description,
-        imageURL: [
-          "https://res.cloudinary.com/bybeni/image/upload/v1562284335/bermuda-preta_a4xt67.jpg"
-        ],
-        isFeatured: isFeatured
-      })
-      .then(function (response) {
+      .post("http://localhost:3004/api/product", newProduct)
+      .then(function(response) {
+        console.log('add')
         getProducts();
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
     this.closeModal();
@@ -96,15 +95,16 @@ class Catalog extends Component {
 
   deleteProduct = (id) => {
     const getProducts = this.getProducts;
-    axios.delete(`http://localhost:3004/product/${id}`)
-      .then(function (response) {
+    axios
+      .delete(`http://localhost:3004/api/product/${id}`)
+      .then((response) => {
         getProducts();
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
-      });;
+      });
     this.closeUpdateModal();
-  }
+  };
 
   openModal = () => {
     this.setState({ modalIsOpen: true });
@@ -127,25 +127,25 @@ class Catalog extends Component {
 
   render() {
     return (
-      <div class="center-column">
-        <h1 class="title is-4">Catalog</h1>
-        {/* <div class="search-bar center">
-          <input class="input" type="text" placeholder="Search product" />
-          <div class="select">
+      <div className="center-column">
+        <h1 className="title is-4">Catalog</h1>
+        {/* <div className="search-bar center">
+          <input className="input" type="text" placeholder="Search product" />
+          <div className="select">
             <select>
               <option>Nome</option>
               <option>SKU</option>
             </select>
           </div>
         </div> */}
-        <div class="tool-bar">
-          <h6 class="subtitle is-6">
+        <div className="tool-bar">
+          <h6 className="subtitle is-6">
             <strong>
               {this.state.products ? this.state.products.length : ""}
             </strong>{" "}
             produtos cadastrados
           </h6>
-          <div class="btn-add-product" onClick={() => this.openModal()}>
+          <div className="btn-add-product" onClick={() => this.openModal()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -164,7 +164,7 @@ class Catalog extends Component {
             <p>Adicionar Produto</p>
           </div>
         </div>
-        <table class="table is-hoverable is-narrow">
+        <table className="table is-hoverable is-narrow">
           <thead>
             <tr>
               <th />
@@ -176,13 +176,17 @@ class Catalog extends Component {
           <tbody>
             {this.state.products
               ? this.state.products.map((item, idx) => {
-                return (
-                  <tr key={idx} onClick={() => this.showProduct(item)}>
-                    <CatalogProduct key={idx} product={item} deleteFunc={this.deleteProduct} />
-                  </tr>
-                );
-              })
-              : null}
+                  return (
+                    <tr key={idx} onClick={() => this.showProduct(item)}>
+                      <CatalogProduct
+                        key={idx}
+                        product={item}
+                        deleteFunc={this.deleteProduct}
+                      />
+                    </tr>
+                  );
+                })
+              : ""}
           </tbody>
         </table>
         {this.state.modalIsOpen ? (
@@ -191,8 +195,8 @@ class Catalog extends Component {
             addProduct={this.addProduct}
           />
         ) : (
-            ""
-          )}
+          ""
+        )}
         {this.state.modalUpdateIsOpen ? (
           <ModalUpdateProduct
             closeModal={this.closeUpdateModal}
@@ -201,8 +205,8 @@ class Catalog extends Component {
             deleteFunc={this.deleteProduct}
           />
         ) : (
-            ""
-          )}
+          ""
+        )}
       </div>
     );
   }

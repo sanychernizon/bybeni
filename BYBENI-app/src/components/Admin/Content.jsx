@@ -8,7 +8,7 @@ import Catalog from "./Catalog";
 class Content extends Component {
   render() {
     return (
-      <main class="container-admin">
+      <main className="container-admin">
         <Switch>
           <Route exact path="/admin/" component={Dashboard} />
           <Route exact path="/admin/orders" component={Orders} />

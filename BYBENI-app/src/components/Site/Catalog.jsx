@@ -14,7 +14,7 @@ class Catalog extends Component {
   getProducts = category => {
     let self = this;
     axios
-      .get(`http://localhost:3004/product?category=${category}`)
+      .get(`http://localhost:3004/api/product?category=${category}`)
       .then(function(response) {
         self.setState({ products: response.data });
       })

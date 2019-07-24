@@ -5,7 +5,7 @@ class ProductBox extends Component {
   render() {
     return (
       <div className="product-box">
-        <Link to={`/p/${this.props.product.id}`}>
+        <Link to={`/p/${this.props.product._id}`}>
           <div className="product-box-info">
             <div className="product-box-image">
               <img src={this.props.product.imageURL[0]} alt={this.props.product.name}/>

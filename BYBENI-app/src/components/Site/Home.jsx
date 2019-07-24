@@ -13,7 +13,7 @@ class Home extends Component {
   getProducts = () => {
     let self = this;
     axios
-      .get(`http://localhost:3004/product?isFeatured=true`)
+      .get(`http://localhost:3004/api/product?isFeatured=true`)
       .then(function(response) {
         self.setState({ products: response.data });
       })

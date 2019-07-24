@@ -670,7 +670,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
 }
 
 .checkout-header img {
@@ -702,13 +702,14 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 7%;
+  height: 35px;
   width: 100%;
   background: #eeeeee;
 }
 
 .checkout-step-header h2 {
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .checkout-step-body {
@@ -836,6 +837,12 @@ img {
   width: 50%;
 }
 
+.credit-card-box {
+  margin-bottom: 30px;
+}
+
+
+
 /* ## CHECKOUT ## */
 
 /* IDENTIFY */
@@ -924,4 +931,10 @@ img {
 
 .account-container div span:last-child {
   border: none;
+}
+
+/* FLAGS */
+
+.error {
+  border: 1px solid #d61d1d
 }

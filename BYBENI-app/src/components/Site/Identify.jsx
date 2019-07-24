@@ -5,16 +5,16 @@ class Identify extends Component {
   render() {
     return (
       <section className="content-container">
-        <div class="login-container">
+        <div className="login-container">
           <div>Olá! Insira seu email e senha para entrar:</div>
           <input
-            class="input-login"
+            className="input-login"
             type="email"
             placeholder="fulanodetal@gmail.com"
           />
-          <input class="input-login" type="password" placeholder="**********" />
+          <input className="input-login" type="password" placeholder="**********" />
           <div>
-            <input class="btn-checkout" type="submit" value="Entrar" />
+            <input className="btn-checkout" type="submit" value="Entrar" />
           </div>
           <div>
             <Link to="/register">ou Cadastre-se agora!</Link>

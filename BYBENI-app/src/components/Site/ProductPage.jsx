@@ -53,7 +53,7 @@ class ProductPage extends Component {
         <div className="product-page">
           <div className="product-page-image">
             <div className="product-thumbs">
-              <img
+              {/* <img
                 src={
                   this.state.product.imageURL
                     ? this.state.product.imageURL[1]
@@ -76,7 +76,7 @@ class ProductPage extends Component {
                     : null
                 }
                 alt={this.state.product.name + "-4"}
-              />
+              /> */}
             </div>
             <div className="product-carousel">
               <img

@@ -18,12 +18,18 @@ class Content extends Component {
         }
       >
         <main>
-          <NavBar
-            menuBtnFunc={this.props.menuFunc}
-            menuIsOpen={this.props.menuIsOpen}
-            cartBtnFunc={this.props.cartFunc}
-            qtdItemsInCart={this.props.cartSelectedItems.length}
-          />
+          {
+            window.location.pathname === '/checkout' ?
+            ''
+            :
+            <NavBar
+              menuBtnFunc={this.props.menuFunc}
+              menuIsOpen={this.props.menuIsOpen}
+              cartBtnFunc={this.props.cartFunc}
+              qtdItemsInCart={this.props.cartSelectedItems.length}
+            />
+          }
+
           <Switch>
             <Route exact path="/" component={Home} />
             <Route
@@ -54,7 +60,12 @@ class Content extends Component {
               render={props => <Register props={props} />}
             />
           </Switch>
-          <Footer />
+          {
+            window.location.pathname === '/checkout' ?
+            ''
+            :
+            <Footer />
+          }
         </main>
       </div>
     );

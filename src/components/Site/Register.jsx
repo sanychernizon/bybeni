@@ -7,7 +7,8 @@ class Register extends Component {
     super(props);
     this.state = {
       flags: {
-        passwordNotEqual: false
+        passwordIsEqual: true,
+        registerIsValid: false
       },
       name: "",
       lastName: "",
@@ -26,20 +27,20 @@ class Register extends Component {
   }
 
   registerUser = () => {
-    console.log(this.state)
-  }
+    console.log(this.state);
+  };
 
   confirmPassword = () => {
-    if(this.state.password !== this.state.confirmPassword) {
-      let copyFlags = {...this.state.flags}
-      copyFlags.passwordNotEqual = true
-      this.setState({flags: copyFlags})
+    if (this.state.password === this.state.confirmPassword) {
+      let copyFlags = { ...this.state.flags };
+      copyFlags.passwordIsEqual = true;
+      this.setState({ flags: copyFlags });
     } else {
-      let copyFlags = {...this.state.flags}
-      copyFlags.passwordNotEqual = false
-      this.setState({flags: copyFlags})
+      let copyFlags = { ...this.state.flags };
+      copyFlags.passwordIsEqual = false;
+      this.setState({ flags: copyFlags });
     }
-  }
+  };
 
   findZip = event => {
     cep(event.target.value).then(response => {
@@ -53,32 +54,82 @@ class Register extends Component {
     });
   };
 
+  validate = () => {
+    if (
+      (this.state.name &&
+      this.state.lastName &&
+      this.state.email &&
+      this.state.cpf &&
+      this.state.password &&
+      this.state.zip &&
+      this.state.street &&
+      this.state.number &&
+      this.state.neighborhood &&
+      this.state.city &&
+      this.state.state !== "") && 
+      this.state.flags.passwordIsEqual === true
+    ) {
+      let copyFlags = { ...this.state.flags };
+      copyFlags.registerIsValid = true;
+      this.setState({ flags: copyFlags });
+    } else {
+      let copyFlags = { ...this.state.flags };
+      copyFlags.registerIsValid = false;
+      this.setState({ flags: copyFlags });
+    }
+    console.log(this.state.flags.registerIsValid);
+  };
+
   handleInput = event => {
     switch (event.target.attributes.name.value) {
       case "name":
-        return this.setState({ name: event.target.value });
+        this.setState({ name: event.target.value });
+        this.validate();
+        break;
       case "last-name":
-        return this.setState({ lastName: event.target.value });
+        this.setState({ lastName: event.target.value });
+        this.validate();
+        break;
       case "email":
-        return this.setState({ email: event.target.value });
+        this.setState({ email: event.target.value });
+        this.validate();
+        break;
       case "cpf":
-        return this.setState({ cpf: event.target.value });
+        this.setState({ cpf: event.target.value });
+        this.validate();
+        break;
       case "password":
-        return this.setState({ password: event.target.value });
+        this.setState({ password: event.target.value });
+        this.validate();
+        break;
       case "confirm-password":
-        return this.setState({ confirmPassword: event.target.value });
+        this.setState({ confirmPassword: event.target.value });
+        this.validate();
+        break;
       case "street":
-        return this.setState({ street: event.target.value });
+        this.setState({ street: event.target.value });
+        this.validate();
+        break;
       case "number":
-        return this.setState({ number: event.target.value });
+        this.setState({ number: event.target.value });
+        this.validate();
+        break;
       case "adjunct":
-        return this.setState({ adjunct: event.target.value });
+        this.setState({ adjunct: event.target.value });
+        this.validate();
+        break;
       case "neighborhood":
-        return this.setState({ neighborhood: event.target.value });
+        this.setState({ neighborhood: event.target.value });
+        this.validate();
+        break;
       case "city":
-        return this.setState({ city: event.target.value });
+        this.setState({ city: event.target.value });
+        this.validate();
+        break;
       case "state":
-        return this.setState({ state: event.target.value });
+        this.setState({ state: event.target.value });
+        this.validate();
+        break;
       default:
         return null;
     }
@@ -95,19 +146,13 @@ class Register extends Component {
             name="name"
             placeholder="Nome"
             onChange={e => this.handleInput(e)}
+            onBlur={() => this.validate()}
           />
           <input
             className="input-login"
             type="text"
             name="last-name"
             placeholder="Sobrenome"
-            onChange={e => this.handleInput(e)}
-          />
-          <input
-            className="input-login"
-            type="email"
-            name="email"
-            placeholder="Email"
             onChange={e => this.handleInput(e)}
           />
           <input
@@ -119,14 +164,29 @@ class Register extends Component {
           />
           <input
             className="input-login"
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={e => this.handleInput(e)}
+          />
+          <input
+            className="input-login"
             type="password"
             name="password"
             placeholder="**********"
             onChange={e => this.handleInput(e)}
           />
-          { this.state.flags.passwordNotEqual === true ? <p>As senhas não são iguais*</p> : ""}
+          {this.state.flags.passwordIsEqual === false ? (
+            <p>As senhas não são iguais*</p>
+          ) : (
+            ""
+          )}
           <input
-            className={ this.state.flags.passwordNotEqual === true ? "input-login error" : "input-login"}
+            className={
+              this.state.flags.passwordIsEqual === false
+                ? "input-login error"
+                : "input-login"
+            }
             type="password"
             name="confirm-password"
             placeholder="**********"
@@ -185,9 +245,15 @@ class Register extends Component {
             placeholder="Estado"
             value={this.state.state}
             onChange={e => this.handleInput(e)}
+            onBlur={() => this.validate()}
           />
           <div>
-            <input className="btn-checkout" type="submit" value="Cadastrar" onClick={() => this.registerUser()} />
+            <input
+              className={this.state.flags.registerIsValid ? "btn-checkout" : "btn-checkout-inactive"}
+              type="submit"
+              value="Cadastrar"
+              onClick={this.state.flags.registerIsValid ? () => this.registerUser() : null}
+            />
           </div>
           <div>
             <Link to="/identify">Já possui conta? Acesse agora.</Link>

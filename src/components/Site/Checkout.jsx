@@ -6,29 +6,64 @@ import { Link } from "react-router-dom";
 class Checkout extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shippingMethod: 0,
+      totalPrice: parseFloat(this.props.cartSelectedItems.reduce((acc, value) => acc + parseInt(value.price),0)).toFixed(2),
+
+    };
   }
 
-  calcTotalPrice = () => {
-    return this.props.cartSelectedItems
-      .reduce((acc, value) => acc + parseInt(value.price), 0)
-      .toFixed(2);
+  handleTotalPrice = event => {
+    this.setState({ shippingMethod: event.target.value });
+    let cartItems = parseFloat(this.props.cartSelectedItems.reduce((acc, value) => acc + parseInt(value.price),0))
+    let totalPrice = (cartItems + parseFloat(event.target.value)).toFixed(2)
+    this.setState({ totalPrice: totalPrice });
+  };
+
+  handleInput = event => {
+    switch (event.target.attributes.name.value) {
+      case "shipping-method":
+        return this.setState({ shippingMethod: event.target.value });
+      case "last-name":
+        return this.setState({ lastName: event.target.value });
+      case "email":
+        return this.setState({ email: event.target.value });
+      case "cpf":
+        return this.setState({ cpf: event.target.value });
+      case "password":
+        return this.setState({ password: event.target.value });
+      case "confirm-password":
+        return this.setState({ confirmPassword: event.target.value });
+      case "street":
+        return this.setState({ street: event.target.value });
+      case "number":
+        return this.setState({ number: event.target.value });
+      case "adjunct":
+        return this.setState({ adjunct: event.target.value });
+      case "neighborhood":
+        return this.setState({ neighborhood: event.target.value });
+      case "city":
+        return this.setState({ city: event.target.value });
+      case "state":
+        return this.setState({ state: event.target.value });
+      default:
+        return null;
+    }
   };
 
   render() {
-    console.log(this.props);
     return (
-      <label className="checkout-container">
+      <div className="checkout-container">
         <div className="checkout-header">
-          <Link to="/">
+          <a href="/">
             <img
               className="img-logo"
               src="https://res.cloudinary.com/bybeni/image/upload/v1562344950/logo_h0kavt.png"
               alt="bybeni-logo"
             />
-          </Link>
+          </a>
         </div>
-        <label className="checkout-body">
+        <div className="checkout-body">
           <div className="checkout-step">
             <div className="checkout-step-header">
               <h2>Endereço</h2>
@@ -48,11 +83,21 @@ class Checkout extends Component {
                 <h1>Forma de envio</h1>
                 <form>
                   <label>
-                    <input type="radio" name="shipping-method" />
+                    <input
+                      type="radio"
+                      name="shipping-method"
+                      value="12.30"
+                      onChange={e => this.handleTotalPrice(e)}
+                    />
                     R$ 12,30 - PAC (3 a 5 dias úteis)
                   </label>
                   <label>
-                    <input type="radio" name="shipping-method" />
+                    <input
+                      type="radio"
+                      name="shipping-method"
+                      value="23.90"
+                      onChange={e => this.handleTotalPrice(e)}
+                    />
                     R$ 23,90 - SEDEX (até 2 dias úteis)
                   </label>
                 </form>
@@ -81,16 +126,16 @@ class Checkout extends Component {
                 </label>
                 <div>
                   <label for="card-user">Nome do Titular</label>
-                  <input name="card-user" type="text" />
+                  <input className="input" name="card-user" type="text" />
                 </div>
                 <div className="credit-card-info">
                   <div>
                     <label for="card-number">Validade</label>
-                    <input name="card-number" type="text" />
+                    <input className="input" name="card-number" type="text" />
                   </div>
                   <div>
                     <label for="card-number">CVV</label>
-                    <input name="card-number" type="text" />
+                    <input className="input" name="card-number" type="text" />
                   </div>
                 </div>
                 <h1>Parcelamento</h1>
@@ -150,15 +195,14 @@ class Checkout extends Component {
               <div className="total-price">
                 <div className="total-price-title">Total a pagar:</div>
                 <div className="total-price-value">
-                  {" "}
-                  R$ {this.calcTotalPrice()}
+                  R$ {this.state.totalPrice}
                 </div>
               </div>
               <button className="btn-checkout">Finalizar Compra</button>
             </div>
           </div>
-        </label>
-      </label>
+        </div>
+      </div>
     );
   }
 }

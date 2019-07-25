@@ -18,8 +18,9 @@ class Content extends Component {
         }
       >
         <main>
+          {console.log(window.location)}
           {
-            window.location.pathname === '/checkout' ?
+            window.location.href === 'http://localhost:3000/checkout' ?
             ''
             :
             <NavBar
@@ -29,7 +30,6 @@ class Content extends Component {
               qtdItemsInCart={this.props.cartSelectedItems.length}
             />
           }
-
           <Switch>
             <Route exact path="/" component={Home} />
             <Route

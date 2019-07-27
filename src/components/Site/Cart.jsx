@@ -46,7 +46,7 @@ export class Cart extends Component {
                 R$ {this.calcTotalPrice()}
               </div>
             </div>
-            <Link to='/checkout' className="btn-checkout" onClick={(event) => this.handleCartToggle(event)}>
+            <Link to={this.props.userIsLoged ? '/checkout' : '/identify'} className="btn-checkout" onClick={(event) => this.handleCartToggle(event)}>
               Ir para o pagamento
             </Link>
           </div>

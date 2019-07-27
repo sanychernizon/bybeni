@@ -2,56 +2,86 @@ import React, { Component } from "react";
 import CheckoutCartItem from "./Cart/CheckoutCartItem";
 import Cards from "react-credit-cards";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shippingMethod: 0,
-      totalPrice: parseFloat(this.props.cartSelectedItems.reduce((acc, value) => acc + parseInt(value.price),0)).toFixed(2),
-
+      userLoged: this.props.userLoged,
+      shippingValue: 0.0,
+      cartPrice: parseFloat(
+        this.props.cartSelectedItems.reduce(
+          (acc, value) => acc + parseInt(value.price),
+          0
+        )
+      ).toFixed(2),
+      totalPrice: parseFloat(
+        this.props.cartSelectedItems.reduce(
+          (acc, value) => acc + parseInt(value.price),
+          0
+        )
+      ).toFixed(2),
+      cardNumber: "",
+      cardName: "",
+      expiry: "",
+      cvc: "",
+      focused: "",
+      installments: "1",
+      installmentsValue: "0"
     };
   }
 
+  placeOrder = () => {
+    axios
+      .post("http://localhost:3004/api/checkout/order-placed", this.state)
+      .then(order => console.log(order));
+  };
+
   handleTotalPrice = event => {
-    this.setState({ shippingMethod: event.target.value });
-    let cartItems = parseFloat(this.props.cartSelectedItems.reduce((acc, value) => acc + parseInt(value.price),0))
-    let totalPrice = (cartItems + parseFloat(event.target.value)).toFixed(2)
+    this.setState({ shippingValue: event.target.value });
+    let cartItems = parseFloat(
+      this.props.cartSelectedItems.reduce(
+        (acc, value) => acc + parseInt(value.price),
+        0
+      )
+    );
+    let totalPrice = (cartItems + parseFloat(event.target.value)).toFixed(2);
     this.setState({ totalPrice: totalPrice });
+  };
+
+  handleFocus = event => {
+    this.setState({ focused: event.target.attributes.name.value });
+  };
+
+  handleBlur = () => {
+    this.setState({ focused: "name" });
   };
 
   handleInput = event => {
     switch (event.target.attributes.name.value) {
-      case "shipping-method":
-        return this.setState({ shippingMethod: event.target.value });
-      case "last-name":
-        return this.setState({ lastName: event.target.value });
-      case "email":
-        return this.setState({ email: event.target.value });
-      case "cpf":
-        return this.setState({ cpf: event.target.value });
-      case "password":
-        return this.setState({ password: event.target.value });
-      case "confirm-password":
-        return this.setState({ confirmPassword: event.target.value });
-      case "street":
-        return this.setState({ street: event.target.value });
       case "number":
-        return this.setState({ number: event.target.value });
-      case "adjunct":
-        return this.setState({ adjunct: event.target.value });
-      case "neighborhood":
-        return this.setState({ neighborhood: event.target.value });
-      case "city":
-        return this.setState({ city: event.target.value });
-      case "state":
-        return this.setState({ state: event.target.value });
+        return this.setState({ cardNumber: event.target.value });
+      case "name":
+        return this.setState({ cardName: event.target.value });
+      case "expiry":
+        return this.setState({ expiry: event.target.value });
+      case "cvc":
+        return this.setState({ cvc: event.target.value });
+      case "installments":
+        return this.setState({
+          installments: event.target.value,
+          installmentsValue: (
+            this.state.totalPrice / event.target.value
+          ).toFixed(2)
+        });
       default:
         return null;
     }
   };
 
   render() {
+    const { address } = this.props.userLoged;
     return (
       <div className="checkout-container">
         <div className="checkout-header">
@@ -72,13 +102,15 @@ class Checkout extends Component {
               <div className="shipping-user-address">
                 <h1>Endereço de entrega</h1>
                 <div className="box">
-                  <p>Sany Chernizon</p>
                   <p>
-                    Rua Emilio de Souza Arantes, 1253, apto 91, Santa Cecília -
-                    São Paulo/SP
+                    {this.props.userLoged.name} {this.props.userLoged.lastName}
                   </p>
-                  <p>CEP: 01233-010</p>
-                  <button>Atualizar Endereço</button>
+                  <p>
+                    {address.street}, {address.number}, {address.adjunct},{" "}
+                    {address.neighborhood} -{address.city}/{address.state}
+                  </p>
+                  <p>CEP: {address.zip}</p>
+                  {/* <button>Atualizar Endereço</button> */}
                 </div>
                 <h1>Forma de envio</h1>
                 <form>
@@ -117,32 +149,70 @@ class Checkout extends Component {
             </div>
             <label className="checkout-step-body">
               <div className="credit-card-box">
-                <Cards number="4901199249924992" />
+                <Cards
+                  number={this.state.cardNumber}
+                  name={this.state.cardName}
+                  expiry={this.state.expiry}
+                  cvc={this.state.cvc}
+                  focused={this.state.focused}
+                  placeholders={{ name: "SEU NOME AQUI" }}
+                />
               </div>
               <label className="payment-credit-card">
                 <label>
-                  <label for="card-number">Número do Cartão</label>
-                  <input className="input" name="card-number" type="text" />
+                  <label for="number">Número do Cartão</label>
+                  <input
+                    className="input"
+                    name="number"
+                    type="text"
+                    onFocus={e => this.handleFocus(e)}
+                    onChange={e => this.handleInput(e)}
+                  />
                 </label>
                 <div>
-                  <label for="card-user">Nome do Titular</label>
-                  <input className="input" name="card-user" type="text" />
+                  <label for="name">Nome do Titular</label>
+                  <input
+                    className="input"
+                    name="name"
+                    type="text"
+                    onFocus={e => this.handleFocus(e)}
+                    onChange={e => this.handleInput(e)}
+                  />
                 </div>
                 <div className="credit-card-info">
                   <div>
-                    <label for="card-number">Validade</label>
-                    <input className="input" name="card-number" type="text" />
+                    <label for="expiring">Validade</label>
+                    <input
+                      className="input"
+                      name="expiry"
+                      type="text"
+                      onFocus={e => this.handleFocus(e)}
+                      onChange={e => this.handleInput(e)}
+                    />
                   </div>
                   <div>
-                    <label for="card-number">CVV</label>
-                    <input className="input" name="card-number" type="text" />
+                    <label for="cvv">CVV</label>
+                    <input
+                      className="input"
+                      name="cvc"
+                      type="text"
+                      onFocus={e => this.handleFocus(e)}
+                      onBlur={() => this.handleBlur()}
+                      onChange={e => this.handleInput(e)}
+                    />
                   </div>
                 </div>
                 <h1>Parcelamento</h1>
-                <select name="installments">
-                  <option>1x R$ 209,90 à vista</option>
-                  <option>2x R$ 104,95 sem juros</option>
-                  <option>3x R$ 69,97 sem juros</option>
+                <select name="installments" onChange={e => this.handleInput(e)}>
+                  <option value="1">
+                    1x R$ {this.state.totalPrice} à vista
+                  </option>
+                  <option value="2">
+                    2x R$ {(this.state.totalPrice / 2).toFixed(2)} sem juros
+                  </option>
+                  <option value="3">
+                    3x R$ {(this.state.totalPrice / 3).toFixed(2)} sem juros
+                  </option>
                 </select>
               </label>
             </label>
@@ -168,18 +238,20 @@ class Checkout extends Component {
               <h1>Endereço de Entrega</h1>
               <div className="shipping-user-address">
                 <div>
-                  <p>Sany Chernizon</p>
                   <p>
-                    Rua Emilio de Souza Arantes, 1253, apto 91, Santa Cecília -
-                    São Paulo/SP
+                    {this.props.userLoged.name} {this.props.userLoged.lastName}
                   </p>
-                  <p>CEP: 01233-010</p>
+                  <p>
+                    {address.street}, {address.number}, {address.adjunct},{" "}
+                    {address.neighborhood} -{address.city}/{address.state}
+                  </p>
+                  <p>CEP: {address.zip}</p>
                 </div>
               </div>
               <h1>Opções de Envio</h1>
               <div className="justify">
                 <span>Frete:</span>
-                <span>SEDEX (até 2 dias úteis) - R$ 23,90</span>
+                <span>R$ {this.state.shippingValue}</span>
               </div>
               <h1>Pagamento</h1>
               <div className="justify">
@@ -188,7 +260,9 @@ class Checkout extends Component {
               </div>
               <div className="justify">
                 <span>Parcelas:</span>
-                <span>3</span>
+                <span>
+                  {this.state.installments} x {this.state.installmentsValue}
+                </span>
               </div>
             </div>
             <div className="checkout-step-footer">
@@ -198,7 +272,12 @@ class Checkout extends Component {
                   R$ {this.state.totalPrice}
                 </div>
               </div>
-              <button className="btn-checkout">Finalizar Compra</button>
+              <button
+                className="btn-checkout"
+                onClick={() => this.placeOrder()}
+              >
+                Finalizar Compra
+              </button>
             </div>
           </div>
         </div>

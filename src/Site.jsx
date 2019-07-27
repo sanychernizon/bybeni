@@ -7,10 +7,18 @@ class Site extends Component {
     super();
     this.state = {
       menuIsOpen: false,
-      carIsOpen: false,
-      cartSelectedItems: []
+      cartIsOpen: false,
+      cartSelectedItems: [],
+      userIsLoged: false,
+      userLoged: ""
     };
   }
+
+  userLoged = user => {
+    this.setState({ userLoged: user, userIsLoged: true });
+    let userString = JSON.stringify(user)
+    localStorage.setItem('user', userString)
+  };
 
   toggleMenu = event => {
     let bool = this.state.menuIsOpen;
@@ -42,18 +50,31 @@ class Site extends Component {
     this.setState({ cartSelectedItems: newCartSelectedItems });
   };
 
-  componentWillMount() { }
+  componentDidMount(){
+    let userLocalStorage = localStorage.getItem('user');
+    if(userLocalStorage){
+      this.setState({userIsLoged: true})
+      let user = JSON.parse(userLocalStorage)
+      this.setState({userLoged: user})
+    }
+  }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-          <Menu menuIsOpen={this.state.menuIsOpen} menuFunc={this.toggleMenu} />
+          <Menu
+            menuIsOpen={this.state.menuIsOpen}
+            menuFunc={this.toggleMenu}
+            user={this.state.userLoged}
+            userIsLoged={this.state.userIsLoged}
+          />
           <Cart
             cartIsOpen={this.state.cartIsOpen}
             cartFunc={this.toggleCart}
             cartRemoveItemFunc={this.removeCartSelectedItem}
             cartSelectedItems={this.state.cartSelectedItems}
+            userIsLoged={this.state.userIsLoged}
           />
           <Content
             menuIsOpen={this.state.menuIsOpen}
@@ -61,6 +82,10 @@ class Site extends Component {
             cartFunc={this.toggleCart}
             addToCart={this.addToCart}
             cartSelectedItems={this.state.cartSelectedItems}
+            userLogedFunc={this.userLoged}
+            userIsLoged={this.state.userIsLoged}
+            userLoged={this.state.userLoged}
+            checkUserIsLoged={this.checkUserIsLoged}
           />
           <Overlay
             cartIsOpen={this.state.cartIsOpen}

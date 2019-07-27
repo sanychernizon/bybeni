@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import cep from "cep-promise";
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class Register extends Component {
     this.state = {
       flags: {
         passwordIsEqual: true,
-        registerIsValid: false
+        registerIsValid: false,
+        alreadyRegister: false,
+        isRegister: false
       },
       name: "",
       lastName: "",
@@ -27,7 +30,26 @@ class Register extends Component {
   }
 
   registerUser = () => {
-    console.log(this.state);
+    let user = { ...this.state };
+    let copyFlags = { ...this.state.flags };
+    let self = this
+    axios
+      .post("http://localhost:3004/api/user/register", user)
+      .then(function(response) {
+        if(Object.keys(response.data)[0] === 'alreadyRegister'){
+          copyFlags.alreadyRegister = response.data.alreadyRegister
+          self.setState({ flags: copyFlags })
+        }
+        if(Object.keys(response.data)[0] === 'isRegister'){
+          copyFlags.isRegister = response.data.isRegister
+          self.setState({ flags: copyFlags })
+          self.props.isRegister(true)
+        }
+        // this.setState({ flags: copyFlags})
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   };
 
   confirmPassword = () => {
@@ -56,7 +78,7 @@ class Register extends Component {
 
   validate = () => {
     if (
-      (this.state.name &&
+      this.state.name &&
       this.state.lastName &&
       this.state.email &&
       this.state.cpf &&
@@ -66,7 +88,7 @@ class Register extends Component {
       this.state.number &&
       this.state.neighborhood &&
       this.state.city &&
-      this.state.state !== "") && 
+      this.state.state !== "" &&
       this.state.flags.passwordIsEqual === true
     ) {
       let copyFlags = { ...this.state.flags };
@@ -138,6 +160,10 @@ class Register extends Component {
   render() {
     return (
       <section className="content-container">
+        {
+          this.state.flags.isRegister ?
+          <Redirect to={{pathname: '/identify',}} /> : ''
+        }
         <div className="register-container">
           <div>Insira algumas informações para criar sua conta :)</div>
           <input
@@ -155,8 +181,17 @@ class Register extends Component {
             placeholder="Sobrenome"
             onChange={e => this.handleInput(e)}
           />
+          {this.state.flags.alreadyRegister === true ? (
+            <p>CPF já cadastrado*</p>
+          ) : (
+            ""
+          )}
           <input
-            className="input-login"
+            className={
+              this.state.flags.alreadyRegister === true
+                ? "input-login error"
+                : "input-login"
+            }
             type="text"
             name="cpf"
             placeholder="CPF"
@@ -249,10 +284,18 @@ class Register extends Component {
           />
           <div>
             <input
-              className={this.state.flags.registerIsValid ? "btn-checkout" : "btn-checkout-inactive"}
+              className={
+                this.state.flags.registerIsValid
+                  ? "btn-checkout"
+                  : "btn-checkout-inactive"
+              }
               type="submit"
               value="Cadastrar"
-              onClick={this.state.flags.registerIsValid ? () => this.registerUser() : null}
+              onClick={
+                this.state.flags.registerIsValid
+                  ? () => this.registerUser()
+                  : null
+              }
             />
           </div>
           <div>

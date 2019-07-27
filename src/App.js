@@ -5,7 +5,8 @@ import "./css/App-mobile.css";
 import "./css/Admin.css";
 import Site from "./Site";
 import Admin from "./Admin";
-import './css/main.scss'
+import './css/main.scss';
+require('dotenv').config()
 
 class App extends Component {
   render() {

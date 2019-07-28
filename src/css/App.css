@@ -856,6 +856,30 @@ img {
   margin-bottom: 30px;
 }
 
+.modal-order-placed {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 99
+}
+
+.modal-message {
+  color: white;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-message h1 {
+  margin: 25px;
+}
 
 /* ## CHECKOUT ## */
 

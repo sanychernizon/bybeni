@@ -28,14 +28,21 @@ class Checkout extends Component {
       cvc: "",
       focused: "",
       installments: "1",
-      installmentsValue: "0"
+      installmentsValue: "0",
+      orderIsPlaced: false,
+      orderStatus: 'processing'
     };
   }
 
   placeOrder = () => {
+    let self = this
     axios
       .post("http://localhost:3004/api/checkout/order-placed", this.state)
-      .then(order => console.log(order));
+      .then(response => {
+        console.log(response.data)
+        self.setState(response.data)
+        self.setState({orderIsPlaced: true})
+      });
   };
 
   handleTotalPrice = event => {
@@ -84,6 +91,7 @@ class Checkout extends Component {
     const { address } = this.props.userLoged;
     return (
       <div className="checkout-container">
+        <div className="modal-order-placed"></div>
         <div className="checkout-header">
           <a href="/">
             <img

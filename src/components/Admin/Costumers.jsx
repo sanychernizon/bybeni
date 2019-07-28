@@ -1,6 +1,31 @@
 import React, { Component } from "react";
+import axios from "axios";
+import CostumerRow from "./CostumerRow";
 
 class Costumers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      costumers: ""
+    };
+  }
+
+  getCostumers = () => {
+    let self = this;
+    axios
+      .get("http://localhost:3004/api/user")
+      .then(response => {
+        self.setState({ costumers: response.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+
+  componentDidMount() {
+    this.getCostumers();
+  }
+
   render() {
     return (
       <div>
@@ -16,46 +41,31 @@ class Costumers extends Component {
                 </select>
               </div>
             </div> */}
-            <table className="table is-hoverable is-fullwidth">
-              <thead>
-                <tr>
-                  <th><abbr title="ID">#</abbr></th>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>Pedidos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>4</th>
-                  <td>Sany Chernizon</td>
-                  <td>sanychernizon@gmail.com</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <th>3</th>
-                  <td>João Carvalho</td>
-                  <td>jocarva@outlook.com</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th>2</th>
-                  <td>Frederico Conti</td>
-                  <td>fredericonti@gmail.com</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <th>1</th>
-                  <td>Amanda Martins dos Santos</td>
-                  <td>amandinha99@gmail.com</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table className="table is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>
+                  <abbr title="ID">#</abbr>
+                </th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Pedidos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.costumers
+                ? this.state.costumers.map((item, idx) => {
+                    return <CostumerRow key={idx} idx={idx} costumer={item} />;
+                  })
+                : ""
+              }
+            </tbody>
+          </table>
         </div>
-        );
-      }
-    }
-    
-    export default Costumers;
+      </div>
+    );
+  }
+}
+
+export default Costumers;

@@ -13,7 +13,7 @@ class Costumers extends Component {
   getCostumers = () => {
     let self = this;
     axios
-      .get("http://localhost:3004/api/user")
+      .get("https://bybeni-back.herokuapp.com/api/user")
       .then(response => {
         self.setState({ costumers: response.data });
       })
@@ -57,7 +57,7 @@ class Costumers extends Component {
                 this.state.costumers
                 ? this.state.costumers.map((item, idx) => {
                     return <CostumerRow key={idx} idx={idx} costumer={item} />;
-                  })
+                  }).reverse()
                 : ""
               }
             </tbody>

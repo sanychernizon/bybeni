@@ -43,9 +43,8 @@ class Checkout extends Component {
   placeOrder = () => {
     let self = this;
     axios
-      .post("http://localhost:3004/api/checkout/order-placed", this.state)
+      .post("https://bybeni-back.herokuapp.com/api/checkout/order-placed", this.state)
       .then(response => {
-        console.log(response.data);
         self.setState(response.data);
         self.setState({ modalOrderIsOpen: true });
       });
@@ -269,10 +268,6 @@ class Checkout extends Component {
                 <h1>Endereço de Entrega</h1>
                 <div className="shipping-user-address">
                   <div>
-                    <p>
-                      {this.props.userLoged.name}{" "}
-                      {this.props.userLoged.lastName}
-                    </p>
                     <p>
                       {address.street}, {address.number}, {address.adjunct},{" "}
                       {address.neighborhood} -{address.city}/{address.state}

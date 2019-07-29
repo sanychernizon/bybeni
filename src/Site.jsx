@@ -14,6 +14,11 @@ class Site extends Component {
     };
   }
 
+  logoutUser = () => {
+    localStorage.removeItem('user');
+    this.setState({userIsLoged: false, userLoged: ''})
+  }
+
   userLoged = user => {
     this.setState({ userLoged: user, userIsLoged: true });
     let userString = JSON.stringify(user)
@@ -68,6 +73,7 @@ class Site extends Component {
             menuFunc={this.toggleMenu}
             user={this.state.userLoged}
             userIsLoged={this.state.userIsLoged}
+            logoutUser={this.logoutUser}
           />
           <Cart
             cartIsOpen={this.state.cartIsOpen}

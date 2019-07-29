@@ -23,7 +23,7 @@ class Catalog extends Component {
     console.log('GET PRODUCTS')
     let self = this;
     axios
-      .get(`http://localhost:3004/api/product`)
+      .get(`https://bybeni-back.herokuapp.com/api/product`)
       .then(function(response) {
           self.setState({ products: response.data });          
       })
@@ -44,7 +44,7 @@ class Catalog extends Component {
   ) => {
     const getProducts = this.getProducts;
     axios
-      .put(`http://localhost:3004/api/product/${id}`, {
+      .put(`https://bybeni-back.herokuapp.com/api/product/${id}`, {
         name: name,
         price: price,
         category: category,
@@ -82,7 +82,7 @@ class Catalog extends Component {
       isFeatured: isFeatured
     };
     axios
-      .post("http://localhost:3004/api/product", newProduct)
+      .post("https://bybeni-back.herokuapp.com/api/product", newProduct)
       .then(function(response) {
         console.log('add')
         getProducts();
@@ -96,7 +96,7 @@ class Catalog extends Component {
   deleteProduct = (id) => {
     const getProducts = this.getProducts;
     axios
-      .delete(`http://localhost:3004/api/product/${id}`)
+      .delete(`https://bybeni-back.herokuapp.com/api/product/${id}`)
       .then((response) => {
         getProducts();
       })
@@ -185,7 +185,7 @@ class Catalog extends Component {
                       />
                     </tr>
                   );
-                })
+                }).reverse()
               : ""}
           </tbody>
         </table>

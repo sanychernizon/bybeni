@@ -36,7 +36,7 @@ class Content extends Component {
       >
         <main>
           {this.renderRedirect()}
-          {window.location.href === "http://localhost:3000/checkout" ? (
+          {window.location.href === "https://bybeni-back.herokuapp.com/checkout" ? (
             ""
           ) : (
             <NavBar

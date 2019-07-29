@@ -16,7 +16,7 @@ class Dashboard extends Component {
   getOrdersPaid = () => {
     let self = this;
     axios
-      .get("http://localhost:3004/api/order/paid")
+      .get("https://bybeni-back.herokuapp.com/api/order/paid")
       .then(response => {
         let paidOrders = response.data.length
         self.setState({ paidOrders: paidOrders });
@@ -29,7 +29,7 @@ class Dashboard extends Component {
   getOrdersRefused = () => {
     let self = this;
     axios
-      .get("http://localhost:3004/api/order/refused")
+      .get("https://bybeni-back.herokuapp.com/api/order/refused")
       .then(response => {
         let refusedOrders = response.data.length
         self.setState({ refusedOrders: refusedOrders });
@@ -42,7 +42,7 @@ class Dashboard extends Component {
   getCostumers = () => {
     let self = this;
     axios
-      .get("http://localhost:3004/api/user")
+      .get("https://bybeni-back.herokuapp.com/api/user")
       .then(response => {
         self.setState({ costumers: response.data.length });
       })
@@ -52,10 +52,9 @@ class Dashboard extends Component {
   };
 
   getProducts = () => {
-    console.log('GET PRODUCTS')
     let self = this;
     axios
-      .get(`http://localhost:3004/api/product`)
+      .get(`https://bybeni-back.herokuapp.com/api/product`)
       .then(function(response) {
           self.setState({ products: response.data.length });          
       })

@@ -47,6 +47,10 @@ class Menu extends Component {
     };
   }
 
+  handleLogout = () => {
+    this.props.logoutUser()
+  }
+
   handleMenuToggle = event => {
     this.props.menuFunc(event);
   };
@@ -64,14 +68,11 @@ class Menu extends Component {
               className="user-menu-box"
               onClick={event => this.handleMenuToggle(event)}
             >
-              <div className="user-thumbnail">
-                <img
-                  src="https://res.cloudinary.com/bybeni/image/upload/v1562344972/user_zd2wcl.svg"
-                  alt="user-icon"
-                />
-              </div>
               <div className="user-login">
-                <p>Olá {this.props.user.name}!</p>
+                <p>Olá {this.props.user.name} !</p>
+              </div>
+              <div className="btn-logout" onClick={() => this.handleLogout()}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f1f1f1" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3"/></svg>
               </div>
             </div>
           ) : (

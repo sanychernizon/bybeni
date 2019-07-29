@@ -30,7 +30,7 @@ class Identify extends Component {
   loginUser = () => {
     let self = this;
     axios
-      .post("http://localhost:3004/api/user/login", this.state)
+      .post("https://bybeni-back.herokuapp.com/api/user/login", this.state)
       .then(function(response) {
         if (response.statusText === "incorrect") {
           self.setState(response.data);

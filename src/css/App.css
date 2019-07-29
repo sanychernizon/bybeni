@@ -112,6 +112,7 @@ img {
   width: 240px;
   border-radius: 30px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -131,7 +132,7 @@ img {
 }
 
 .user-login {
-  width: 76%;
+  width: 196px;
   display: flex;
   justify-content: center;
   font-family: "Archivo Narrow", sans-serif;
@@ -209,6 +210,22 @@ img {
   font-size: 0.8rem;
   cursor: pointer;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.btn-logout {
+  width: 44px;
+  height: 44px;
+  background: #333333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.btn-logout:hover {
+  background: #ab2929;
+  cursor: pointer;
 }
 
 /* MENU ANIMATION */
@@ -969,6 +986,12 @@ img {
 
 .account-container div span:last-child {
   border: none;
+}
+
+.footer-container {
+  width: 100%;
+  height: 50px;
+  color: #666666
 }
 
 /* FLAGS */

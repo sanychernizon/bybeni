@@ -34,7 +34,7 @@ class Register extends Component {
     let copyFlags = { ...this.state.flags };
     let self = this
     axios
-      .post("http://localhost:3004/api/user/register", user)
+      .post("https://bybeni-back.herokuapp.com/api/user/register", user)
       .then(function(response) {
         if(Object.keys(response.data)[0] === 'alreadyRegister'){
           copyFlags.alreadyRegister = response.data.alreadyRegister

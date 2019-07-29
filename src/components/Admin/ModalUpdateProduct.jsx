@@ -69,21 +69,17 @@ class ModalUpdateProduct extends Component {
   };
 
   handleImageUrl = event => {
-    // event.preventDefault();
-    console.log("Handle Image URL");
     const formData = new FormData();
     formData.append("photo", this.state.file);
 
     let self = this;
     axios({
       method: "post",
-      url: "http://localhost:3004/api/product/upload",
+      url: "https://bybeni-back.herokuapp.com/api/product/upload",
       data: formData,
       config: { headers: { "Content-Type": "multipart/form-data" } }
     })
       .then(function(response) {
-        console.log("Resposta AXIOS");
-        console.log(response);
         self.setState({ imageURL: response.data });
       })
       .catch(function(error) {
@@ -92,7 +88,6 @@ class ModalUpdateProduct extends Component {
   };
 
   handleFile = e => {
-    console.log(e.target.files[0]);
     this.setState({ file: e.target.files[0] });
   };
 

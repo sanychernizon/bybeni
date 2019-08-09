@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CheckoutCartItem from "./Cart/CheckoutCartItem";
 import Cards from "react-credit-cards";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../services/api"
 import ModalPaid from "./Checkout/ModalPaid";
 import ModalRefused from "./Checkout/ModalRefused";
 
@@ -42,8 +42,8 @@ class Checkout extends Component {
 
   placeOrder = () => {
     let self = this;
-    axios
-      .post("https://bybeni-back.herokuapp.com/api/checkout/order-placed", this.state)
+    api
+      .post("/api/checkout/order-placed", this.state)
       .then(response => {
         self.setState(response.data);
         self.setState({ modalOrderIsOpen: true });

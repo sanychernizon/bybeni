@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../../services/api"
 import ProductBox from "./ProductBox";
 
 class Home extends Component {
@@ -13,8 +13,8 @@ class Home extends Component {
 
   getProducts = () => {
     let self = this;
-    axios
-      .get(`https://bybeni-back.herokuapp.com/api/product?isFeatured=true`)
+    api
+      .get(`/api/product?isFeatured=true`)
       .then(function(response) {
         self.setState({ products: response.data });
       })

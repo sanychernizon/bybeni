@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../services/api"
 
 class Identify extends Component {
   constructor(props) {
@@ -29,8 +29,8 @@ class Identify extends Component {
 
   loginUser = () => {
     let self = this;
-    axios
-      .post("https://bybeni-back.herokuapp.com/api/user/login", this.state)
+    api
+      .post("/api/user/login", this.state)
       .then(function(response) {
         if (response.statusText === "incorrect") {
           self.setState(response.data);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ProductBox from "./ProductBox";
+import api from "../../services/api"
 
 class Catalog extends Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class Catalog extends Component {
 
   getProducts = category => {
     let self = this;
-    axios
-      .get(`https://bybeni-back.herokuapp.com/api/product?category=${category}`)
+    api
+      .get(`/api/product?category=${category}`)
       .then(function(response) {
         self.setState({ products: response.data });
       })

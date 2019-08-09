@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../../services/api"
 import ModalAddProduct from "./ModalAddProduct";
 import ModalUpdateProduct from "./ModalUpdateProduct";
 import CatalogProduct from "./CatalogProduct";
@@ -22,8 +22,8 @@ class Catalog extends Component {
   getProducts = () => {
     console.log('GET PRODUCTS')
     let self = this;
-    axios
-      .get(`https://bybeni-back.herokuapp.com/api/product`)
+    api
+      .get(`/api/product`)
       .then(function(response) {
           self.setState({ products: response.data });          
       })
@@ -43,8 +43,8 @@ class Catalog extends Component {
     isFeatured
   ) => {
     const getProducts = this.getProducts;
-    axios
-      .put(`https://bybeni-back.herokuapp.com/api/product/${id}`, {
+    api
+      .put(`/api/product/${id}`, {
         name: name,
         price: price,
         category: category,
@@ -81,8 +81,8 @@ class Catalog extends Component {
       imageURL: imageURL,
       isFeatured: isFeatured
     };
-    axios
-      .post("https://bybeni-back.herokuapp.com/api/product", newProduct)
+    api
+      .post("/api/product", newProduct)
       .then(function(response) {
         console.log('add')
         getProducts();
@@ -95,8 +95,8 @@ class Catalog extends Component {
 
   deleteProduct = (id) => {
     const getProducts = this.getProducts;
-    axios
-      .delete(`https://bybeni-back.herokuapp.com/api/product/${id}`)
+    api
+      .delete(`/api/product/${id}`)
       .then((response) => {
         getProducts();
       })

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CheckboxSize from "./CheckboxSize";
-import axios from "axios";
+import api from "../../services/api"
 
 class ModalUpdateProduct extends Component {
   constructor(props) {
@@ -73,9 +73,9 @@ class ModalUpdateProduct extends Component {
     formData.append("photo", this.state.file);
 
     let self = this;
-    axios({
+    api({
       method: "post",
-      url: "https://bybeni-back.herokuapp.com/api/product/upload",
+      url: "/api/product/upload",
       data: formData,
       config: { headers: { "Content-Type": "multipart/form-data" } }
     })

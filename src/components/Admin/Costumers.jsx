@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../../services/api"
 import CostumerRow from "./CostumerRow";
 
 class Costumers extends Component {
@@ -12,8 +12,8 @@ class Costumers extends Component {
 
   getCostumers = () => {
     let self = this;
-    axios
-      .get("https://bybeni-back.herokuapp.com/api/user")
+    api
+      .get("/api/user")
       .then(response => {
         self.setState({ costumers: response.data });
       })

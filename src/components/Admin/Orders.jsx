@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../../services/api"
+
 import OrderRow from './OrderRow';
 
 class Orders extends Component {
@@ -12,8 +13,8 @@ class Orders extends Component {
 
   getOrders = () => {
     let self = this
-    axios
-      .get("https://bybeni-back.herokuapp.com/api/order")
+    api
+      .get("/api/order")
       .then(response => {
         self.setState({ orders: response.data});
       })

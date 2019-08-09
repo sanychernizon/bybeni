@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import SizeButton from "./Buttons/SizeButton";
+import api from "../../services/api"
 
 class ProductPage extends Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class ProductPage extends Component {
 
   getProducts = productId => {
     let self = this;
-    axios
-      .get(`https://bybeni-back.herokuapp.com/api/product?id=${productId}`)
+    api
+      .get(`/api/product?id=${productId}`)
       .then(function(response) {
         self.setState({ product: response.data[0] });
       })

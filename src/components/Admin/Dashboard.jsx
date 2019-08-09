@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../../services/api"
 
 class Dashboard extends Component {
 
@@ -15,8 +15,8 @@ class Dashboard extends Component {
 
   getOrdersPaid = () => {
     let self = this;
-    axios
-      .get("https://bybeni-back.herokuapp.com/api/order/paid")
+    api
+      .get("/api/order/paid")
       .then(response => {
         let paidOrders = response.data.length
         self.setState({ paidOrders: paidOrders });
@@ -28,8 +28,8 @@ class Dashboard extends Component {
 
   getOrdersRefused = () => {
     let self = this;
-    axios
-      .get("https://bybeni-back.herokuapp.com/api/order/refused")
+    api
+      .get("/api/order/refused")
       .then(response => {
         let refusedOrders = response.data.length
         self.setState({ refusedOrders: refusedOrders });
@@ -41,8 +41,8 @@ class Dashboard extends Component {
 
   getCostumers = () => {
     let self = this;
-    axios
-      .get("https://bybeni-back.herokuapp.com/api/user")
+    api
+      .get("/api/user")
       .then(response => {
         self.setState({ costumers: response.data.length });
       })
@@ -53,8 +53,8 @@ class Dashboard extends Component {
 
   getProducts = () => {
     let self = this;
-    axios
-      .get(`https://bybeni-back.herokuapp.com/api/product`)
+    api
+      .get(`/api/product`)
       .then(function(response) {
           self.setState({ products: response.data.length });          
       })

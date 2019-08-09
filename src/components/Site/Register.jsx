@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import cep from "cep-promise";
-import axios from "axios";
+import api from "../../services/api"
 
 class Register extends Component {
   constructor(props) {
@@ -33,8 +33,8 @@ class Register extends Component {
     let user = { ...this.state };
     let copyFlags = { ...this.state.flags };
     let self = this
-    axios
-      .post("https://bybeni-back.herokuapp.com/api/user/register", user)
+    api
+      .post("/api/user/register", user)
       .then(function(response) {
         if(Object.keys(response.data)[0] === 'alreadyRegister'){
           copyFlags.alreadyRegister = response.data.alreadyRegister
